@@ -2,13 +2,22 @@
 <html>
 <head>
   <title>Webpage Annotator</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <h3>Annotator</h3>
-  <button id="highlight">Highlight</button>
-  <button id="sticky-note">Add Sticky Note</button>
-  <button id="clear">Clear Annotations</button>
-
+  <div class="container">
+    <button id="highlight" class="btn btn-warning btn-custom">
+      <i class="material-icons">highlight</i> Highlight
+    </button>
+    <button id="sticky-note" class="btn btn-primary btn-custom">
+      <i class="material-icons">sticky_note_2</i> Sticky Note
+    </button>
+    <button id="clear" class="btn btn-danger btn-custom">
+      <i class="material-icons">delete</i> Clear
+    </button>
+  </div>
   <script src="popup.js"></script>
 </body>
 </html>
