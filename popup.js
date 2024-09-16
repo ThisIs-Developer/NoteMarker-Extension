@@ -188,8 +188,15 @@ function createStickyNote() {
       textarea::placeholder {
           color: black;
       }
+
+      .note-text {
+          scrollbar-width: thin;
+      }
   `;
   document.head.appendChild(style);
+  
+  // Apply CSS class for the scrollbar to the textarea
+  noteText.classList.add('note-text');
   
   // Append elements to note
   note.appendChild(noteTopBar);
