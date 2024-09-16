@@ -105,7 +105,7 @@ function createStickyNote() {
   const noteText = document.createElement("textarea");
   const colorButton = document.createElement("i");
   const colorBox = document.createElement("div");
-  
+
   // Create note container
   note.style.position = "absolute";
   note.style.top = window.scrollY + "px";
@@ -113,7 +113,7 @@ function createStickyNote() {
   note.style.width = "200px";
   note.style.backgroundColor = "white"; // Default color
   note.style.border = "1px solid black";
-  note.style.borderRadius = "5px";
+  note.style.borderRadius = "10px"; // Added border radius
   note.style.zIndex = "10000";
   
   // Create top bar (white with black text)
@@ -123,7 +123,9 @@ function createStickyNote() {
   noteTopBar.style.display = "flex";
   noteTopBar.style.justifyContent = "space-between";
   noteTopBar.style.borderBottom = "1px solid black"; // To visually separate from the body
-  
+  noteTopBar.style.borderTopLeftRadius = "10px"; // Match border radius
+  noteTopBar.style.borderTopRightRadius = "10px"; // Match border radius
+
   // Add date to top bar (left side)
   const date = new Date();
   const formattedDate = `${date.getDate()}-${date.getMonth() + 1}-${date.getFullYear()} ${date.getHours()}:${date.getMinutes()}`;
@@ -147,7 +149,7 @@ function createStickyNote() {
   colorBox.style.background = "white";
   colorBox.style.border = "1px solid black";
   colorBox.style.padding = "5px";
-  colorBox.style.borderRadius = "5px";
+  colorBox.style.borderRadius = "10px"; // Match border radius
   colorBox.style.display = "flex";
   colorBox.style.gap = "5px";
   colorBox.style.zIndex = "10001";
@@ -194,9 +196,6 @@ function createStickyNote() {
       }
   `;
   document.head.appendChild(style);
-  
-  // Apply CSS class for the scrollbar to the textarea
-  noteText.classList.add('note-text');
   
   // Append elements to note
   note.appendChild(noteTopBar);
