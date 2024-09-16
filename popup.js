@@ -152,9 +152,9 @@ function createStickyNote() {
   colorBox.style.gap = "5px";
   colorBox.style.zIndex = "10001";
   
-  // Color options
-  const colors = ["yellow", "lightblue", "lightgreen", "pink", "orange"];
-  colors.forEach(color => {
+  // Hex color options
+  const hexColors = ["#FFFF00", "#ADD8E6", "#90EE90", "#FFC0CB", "#FFA500"];
+  hexColors.forEach(color => {
       const colorOption = document.createElement("div");
       colorOption.style.backgroundColor = color;
       colorOption.style.width = "20px";
@@ -181,7 +181,15 @@ function createStickyNote() {
   noteText.style.padding = "5px";
   noteText.style.backgroundColor = "transparent";
   noteText.style.color = "black"; // Text color black
-  noteText.style.resize = "none"; // Disable resizing
+
+  // Apply CSS for placeholder text color
+  const style = document.createElement('style');
+  style.textContent = `
+      textarea::placeholder {
+          color: black;
+      }
+  `;
+  document.head.appendChild(style);
   
   // Append elements to note
   note.appendChild(noteTopBar);
