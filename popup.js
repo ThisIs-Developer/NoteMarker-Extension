@@ -144,15 +144,28 @@ function createStickyNote() {
     const ampm = date.getHours() >= 12 ? 'PM' : 'AM';
     const formattedTime = `${hours}:${minutes} ${ampm}`;
 
+    // Format current date in DD-MM-YYYY
+    const formattedDate = `${date.getDate().toString().padStart(2, '0')}-${(date.getMonth() + 1).toString().padStart(2, '0')}-${date.getFullYear()}`;
+
     const timeText = document.createElement("span");
     timeText.textContent = formattedTime;
     timeText.style.color = "black";
+    timeText.style.cursor = "pointer";
+
+    // Show date on hover
+    timeText.addEventListener("mouseover", () => {
+        timeText.textContent = formattedDate;
+    });
+    timeText.addEventListener("mouseout", () => {
+        timeText.textContent = formattedTime;
+    });
+
     noteTopBar.appendChild(timeText);
 
     // Container for icons to ensure 1px gap
     const iconContainer = document.createElement("div");
     iconContainer.style.display = "flex"; // Flexbox to hold icons
-    iconContainer.style.gap = "5px"; // Add 1px gap between icons
+    iconContainer.style.gap = "1px"; // Add 1px gap between icons
 
     // Add copy button
     copyButton.className = "material-symbols-outlined";
