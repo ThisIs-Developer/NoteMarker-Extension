@@ -69,7 +69,3 @@ This project is licensed under the **GNU General Public License v3.0**. See the 
 ---
 
 Thank you for using the Webpage Annotator Extension! Feel free to report issues or suggest new features. Stay tuned for updates!
-
----
-
-Let me know if you'd like to modify this further!
