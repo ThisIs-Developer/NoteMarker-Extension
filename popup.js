@@ -275,6 +275,18 @@ function createStickyNote() {
         textarea::placeholder {
             color: black;
         }
+
+        ::-webkit-scrollbar {
+            width: 5px;
+        }
+
+        textarea {
+            scrollbar-width: thin;
+        }
+
+        textarea::-webkit-scrollbar-thumb {
+            border-radius: 50%;
+        }
     `;
     document.head.appendChild(style);
 
