@@ -177,7 +177,7 @@ function createStickyNote() {
     // Container for icons to ensure 1px gap
     const iconContainer = document.createElement("div");
     iconContainer.style.display = "flex"; // Flexbox to hold icons
-    iconContainer.style.gap = "1px"; // Add 1px gap between icons
+    iconContainer.style.gap = "5px"; // Add 1px gap between icons
 
     // Add copy button
     copyButton.className = "material-symbols-outlined";
