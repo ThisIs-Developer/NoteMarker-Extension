@@ -132,7 +132,7 @@ function createStickyNote() {
     noteTopBar.style.cursor = "move";
     noteTopBar.style.display = "flex";
     noteTopBar.style.justifyContent = "space-between";
-    noteTopBar.style.alignItems = "center"; // Align icons without spacing
+    noteTopBar.style.alignItems = "center";
     noteTopBar.style.borderBottom = "1px solid black";
     noteTopBar.style.borderTopLeftRadius = "10px";
     noteTopBar.style.borderTopRightRadius = "10px";
@@ -149,10 +149,10 @@ function createStickyNote() {
     timeText.style.color = "black";
     noteTopBar.appendChild(timeText);
 
-    // Container for icons to ensure no gaps
+    // Container for icons to ensure 1px gap
     const iconContainer = document.createElement("div");
     iconContainer.style.display = "flex"; // Flexbox to hold icons
-    iconContainer.style.gap = "0"; // Remove gap between icons
+    iconContainer.style.gap = "5px"; // Add 1px gap between icons
 
     // Add copy button
     copyButton.className = "material-symbols-outlined";
@@ -280,3 +280,4 @@ function createStickyNote() {
         return false;
     };
 }
+
