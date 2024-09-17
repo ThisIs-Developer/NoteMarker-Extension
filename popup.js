@@ -101,10 +101,10 @@ document.getElementById("sticky-note").addEventListener("click", () => {
 
 function createStickyNote() {
     // Add Material Symbols Outlined stylesheet dynamically if not already included
-    if (!document.querySelector("link[href='https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0']")) {
+    if (!document.querySelector("link[href='https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,200,0,0']")) {
         const link = document.createElement("link");
         link.rel = "stylesheet";
-        link.href = "https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0";
+        link.href = "https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,2400,0,0";
         document.head.appendChild(link);
     }
 
@@ -148,6 +148,7 @@ function createStickyNote() {
     colorButton.style.fontFamily = "'Material Symbols Outlined'";
     colorButton.style.color = "black";
     colorButton.style.cursor = "pointer";
+    colorButton.style.fontWeight = "300"; // Set font weight to 100
     noteTopBar.appendChild(colorButton);
     
     // Create color selection box (hidden by default)
@@ -254,3 +255,4 @@ function createStickyNote() {
         return false;
     };
 }
+
