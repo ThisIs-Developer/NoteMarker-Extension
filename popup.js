@@ -98,14 +98,22 @@ document.getElementById("sticky-note").addEventListener("click", () => {
         });
     });
 });
-  
-  function createStickyNote() {
+
+function createStickyNote() {
+    // Add Material Symbols Outlined stylesheet dynamically if not already included
+    if (!document.querySelector("link[href='https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0']")) {
+        const link = document.createElement("link");
+        link.rel = "stylesheet";
+        link.href = "https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0";
+        document.head.appendChild(link);
+    }
+
     const note = document.createElement("div");
     const noteTopBar = document.createElement("div");
     const noteText = document.createElement("textarea");
-    const colorButton = document.createElement("i");
+    const colorButton = document.createElement("span");
     const colorBox = document.createElement("div");
-  
+
     // Create note container
     note.style.position = "absolute";
     note.style.top = window.scrollY + "px";
@@ -125,7 +133,7 @@ document.getElementById("sticky-note").addEventListener("click", () => {
     noteTopBar.style.borderBottom = "1px solid black"; // To visually separate from the body
     noteTopBar.style.borderTopLeftRadius = "10px"; // Match border radius
     noteTopBar.style.borderTopRightRadius = "10px"; // Match border radius
-  
+
     // Add date to top bar (left side)
     const date = new Date();
     const formattedDate = `${date.getDate()}-${date.getMonth() + 1}-${date.getFullYear()} ${date.getHours()}:${date.getMinutes()}`;
@@ -135,8 +143,9 @@ document.getElementById("sticky-note").addEventListener("click", () => {
     noteTopBar.appendChild(dateText);
     
     // Add color change button (right side)
-    colorButton.className = "material-icons";
-    colorButton.innerHTML = "&#9998;"; // HTML Symbol for sun
+    colorButton.className = "material-symbols-outlined";
+    colorButton.textContent = "palette"; // Material icon for color palette
+    colorButton.style.fontFamily = "'Material Symbols Outlined'";
     colorButton.style.color = "black";
     colorButton.style.cursor = "pointer";
     noteTopBar.appendChild(colorButton);
@@ -183,16 +192,32 @@ document.getElementById("sticky-note").addEventListener("click", () => {
     noteText.style.padding = "5px";
     noteText.style.backgroundColor = "transparent";
     noteText.style.color = "black"; // Text color black
-  
+    noteText.style.fontFamily = "'Arial', sans-serif"; // Fixed font family
+    noteText.style.fontSize = "14px"; // Fixed text size
+
     // Apply CSS for placeholder text color
     const style = document.createElement('style');
     style.textContent = `
         textarea::placeholder {
             color: black;
         }
-  
+
         .note-text {
             scrollbar-width: thin;
+        }
+
+        /* Custom scrollbar styles */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #888;
+            border-radius: 10px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #555;
         }
     `;
     document.head.appendChild(style);
@@ -207,26 +232,25 @@ document.getElementById("sticky-note").addEventListener("click", () => {
     noteTopBar.onmousedown = function (event) {
         let shiftX = event.clientX - note.getBoundingClientRect().left;
         let shiftY = event.clientY - note.getBoundingClientRect().top;
-  
+
         function moveAt(pageX, pageY) {
             note.style.left = pageX - shiftX + 'px';
             note.style.top = pageY - shiftY + 'px';
         }
-  
+
         function onMouseMove(event) {
             moveAt(event.pageX, event.pageY);
         }
-  
+
         document.addEventListener('mousemove', onMouseMove);
-  
+
         noteTopBar.onmouseup = function () {
             document.removeEventListener('mousemove', onMouseMove);
             noteTopBar.onmouseup = null;
         };
     };
-  
+
     noteTopBar.ondragstart = function () {
         return false;
     };
-  }
-  
+}
