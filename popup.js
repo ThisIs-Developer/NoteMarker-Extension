@@ -112,6 +112,8 @@ function createStickyNote() {
     const noteTopBar = document.createElement("div");
     const noteText = document.createElement("textarea");
     const colorButton = document.createElement("span");
+    const copyButton = document.createElement("span");
+    const cancelButton = document.createElement("span");
     const colorBox = document.createElement("div");
 
     // Create note container
@@ -119,51 +121,92 @@ function createStickyNote() {
     note.style.top = window.scrollY + "px";
     note.style.left = "10px";
     note.style.width = "200px";
-    note.style.backgroundColor = "white"; // Default color
+    note.style.backgroundColor = "white";
     note.style.border = "1px solid black";
-    note.style.borderRadius = "10px"; // Added border radius
+    note.style.borderRadius = "10px";
     note.style.zIndex = "10000";
-    
+
     // Create top bar (white with black text)
     noteTopBar.style.background = "white";
     noteTopBar.style.padding = "5px";
     noteTopBar.style.cursor = "move";
     noteTopBar.style.display = "flex";
     noteTopBar.style.justifyContent = "space-between";
-    noteTopBar.style.borderBottom = "1px solid black"; // To visually separate from the body
-    noteTopBar.style.borderTopLeftRadius = "10px"; // Match border radius
-    noteTopBar.style.borderTopRightRadius = "10px"; // Match border radius
+    noteTopBar.style.alignItems = "center"; // Align icons without spacing
+    noteTopBar.style.borderBottom = "1px solid black";
+    noteTopBar.style.borderTopLeftRadius = "10px";
+    noteTopBar.style.borderTopRightRadius = "10px";
 
-    // Add date to top bar (left side)
+    // Format current time in AM/PM
     const date = new Date();
-    const formattedDate = `${date.getDate()}-${date.getMonth() + 1}-${date.getFullYear()} ${date.getHours()}:${date.getMinutes()}`;
-    const dateText = document.createElement("span");
-    dateText.textContent = formattedDate;
-    dateText.style.color = "black"; // Black text
-    noteTopBar.appendChild(dateText);
-    
-    // Add color change button (right side)
+    const hours = date.getHours() % 12 || 12;
+    const minutes = date.getMinutes().toString().padStart(2, '0');
+    const ampm = date.getHours() >= 12 ? 'PM' : 'AM';
+    const formattedTime = `${hours}:${minutes} ${ampm}`;
+
+    const timeText = document.createElement("span");
+    timeText.textContent = formattedTime;
+    timeText.style.color = "black";
+    noteTopBar.appendChild(timeText);
+
+    // Container for icons to ensure no gaps
+    const iconContainer = document.createElement("div");
+    iconContainer.style.display = "flex"; // Flexbox to hold icons
+    iconContainer.style.gap = "0"; // Remove gap between icons
+
+    // Add copy button
+    copyButton.className = "material-symbols-outlined";
+    copyButton.textContent = "content_copy";
+    copyButton.style.fontFamily = "'Material Symbols Outlined'";
+    copyButton.style.color = "black";
+    copyButton.style.cursor = "pointer";
+    copyButton.style.fontWeight = "300";
+    copyButton.addEventListener("click", () => {
+        noteText.select();
+        document.execCommand("copy");
+        copyButton.textContent = "done"; // Change icon after copying
+        setTimeout(() => {
+            copyButton.textContent = "content_copy"; // Reset icon after 1 second
+        }, 1000);
+    });
+    iconContainer.appendChild(copyButton);
+
+    // Add color change button
     colorButton.className = "material-symbols-outlined";
-    colorButton.textContent = "palette"; // Material icon for color palette
+    colorButton.textContent = "palette";
     colorButton.style.fontFamily = "'Material Symbols Outlined'";
     colorButton.style.color = "black";
     colorButton.style.cursor = "pointer";
-    colorButton.style.fontWeight = "300"; // Set font weight to 100
-    noteTopBar.appendChild(colorButton);
-    
+    colorButton.style.fontWeight = "300";
+    iconContainer.appendChild(colorButton);
+
+    // Add cancel button
+    cancelButton.className = "material-symbols-outlined";
+    cancelButton.textContent = "close";
+    cancelButton.style.fontFamily = "'Material Symbols Outlined'";
+    cancelButton.style.color = "black";
+    cancelButton.style.cursor = "pointer";
+    cancelButton.addEventListener("click", () => {
+        note.remove();
+    });
+    iconContainer.appendChild(cancelButton);
+
+    // Add icon container to the top bar
+    noteTopBar.appendChild(iconContainer);
+
     // Create color selection box (hidden by default)
-    colorBox.style.display = "none"; // Hidden until the icon is clicked
+    colorBox.style.display = "none";
     colorBox.style.position = "absolute";
     colorBox.style.top = "30px";
     colorBox.style.left = "10px";
     colorBox.style.background = "white";
     colorBox.style.border = "1px solid black";
     colorBox.style.padding = "5px";
-    colorBox.style.borderRadius = "10px"; // Match border radius
+    colorBox.style.borderRadius = "10px";
     colorBox.style.display = "flex";
     colorBox.style.gap = "5px";
     colorBox.style.zIndex = "10001";
-    
+
     // Hex color options
     const hexColors = ["#FFFF00", "#ADD8E6", "#90EE90", "#FFC0CB", "#FFA500"];
     hexColors.forEach(color => {
@@ -174,17 +217,17 @@ function createStickyNote() {
         colorOption.style.borderRadius = "50%";
         colorOption.style.cursor = "pointer";
         colorOption.addEventListener("click", () => {
-            note.style.backgroundColor = color; // Change the note color
-            colorBox.style.display = "none"; // Hide after selection
+            note.style.backgroundColor = color;
+            colorBox.style.display = "none";
         });
         colorBox.appendChild(colorOption);
     });
-    
+
     // Show/hide color selection box on click
     colorButton.addEventListener("click", () => {
         colorBox.style.display = colorBox.style.display === "none" ? "flex" : "none";
     });
-    
+
     // Create note text area
     noteText.placeholder = "Enter note here...";
     noteText.style.width = "100%";
@@ -192,9 +235,9 @@ function createStickyNote() {
     noteText.style.border = "none";
     noteText.style.padding = "5px";
     noteText.style.backgroundColor = "transparent";
-    noteText.style.color = "black"; // Text color black
-    noteText.style.fontFamily = "'Arial', sans-serif"; // Fixed font family
-    noteText.style.fontSize = "14px"; // Fixed text size
+    noteText.style.color = "black";
+    noteText.style.fontFamily = "'Arial', sans-serif";
+    noteText.style.fontSize = "14px";
 
     // Apply CSS for placeholder text color
     const style = document.createElement('style');
@@ -202,33 +245,15 @@ function createStickyNote() {
         textarea::placeholder {
             color: black;
         }
-
-        .note-text {
-            scrollbar-width: thin;
-        }
-
-        /* Custom scrollbar styles */
-        ::-webkit-scrollbar {
-            width: 8px;
-        }
-
-        ::-webkit-scrollbar-thumb {
-            background: #888;
-            border-radius: 10px;
-        }
-
-        ::-webkit-scrollbar-thumb:hover {
-            background: #555;
-        }
     `;
     document.head.appendChild(style);
-    
+
     // Append elements to note
     note.appendChild(noteTopBar);
     note.appendChild(noteText);
     note.appendChild(colorBox);
     document.body.appendChild(note);
-    
+
     // Make the note draggable
     noteTopBar.onmousedown = function (event) {
         let shiftX = event.clientX - note.getBoundingClientRect().left;
@@ -255,4 +280,3 @@ function createStickyNote() {
         return false;
     };
 }
-
