@@ -108,6 +108,7 @@ function createStickyNote() {
         document.head.appendChild(link);
     }
 
+    // Create the note container and elements
     const note = document.createElement("div");
     const noteTopBar = document.createElement("div");
     const noteText = document.createElement("textarea");
@@ -116,7 +117,7 @@ function createStickyNote() {
     const cancelButton = document.createElement("span");
     const colorBox = document.createElement("div");
 
-    // Create note container
+    // Note container styles
     note.style.position = "absolute";
     note.style.top = window.scrollY + "px";
     note.style.left = "10px";
@@ -125,8 +126,9 @@ function createStickyNote() {
     note.style.border = "1px solid black";
     note.style.borderRadius = "10px";
     note.style.zIndex = "10000";
+    note.style.transition = "opacity 300ms ease"; // Smooth transition for opacity
 
-    // Create top bar (white with black text)
+    // Top bar styles
     noteTopBar.style.background = "white";
     noteTopBar.style.padding = "5px";
     noteTopBar.style.cursor = "move";
@@ -137,21 +139,21 @@ function createStickyNote() {
     noteTopBar.style.borderTopLeftRadius = "10px";
     noteTopBar.style.borderTopRightRadius = "10px";
 
-    // Format current time in AM/PM
+    // Time formatting
     const date = new Date();
     const hours = date.getHours() % 12 || 12;
     const minutes = date.getMinutes().toString().padStart(2, '0');
     const ampm = date.getHours() >= 12 ? 'PM' : 'AM';
     const formattedTime = `${hours}:${minutes} ${ampm}`;
 
-    // Format current date in DD-MM-YYYY
+    // Date formatting
     const formattedDate = `${date.getDate().toString().padStart(2, '0')}-${(date.getMonth() + 1).toString().padStart(2, '0')}-${date.getFullYear()}`;
 
     const timeText = document.createElement("span");
     timeText.textContent = formattedTime;
     timeText.style.color = "black";
     timeText.style.cursor = "pointer";
-    timeText.style.transition = "opacity 0.5s ease"; // Add transition effect
+    timeText.style.transition = "opacity 300ms ease"; // Add transition effect
     timeText.style.opacity = "1"; // Ensure opacity starts at 1
 
     // Show date on hover
@@ -174,10 +176,10 @@ function createStickyNote() {
 
     noteTopBar.appendChild(timeText);
 
-    // Container for icons to ensure 1px gap
+    // Container for icons to ensure 5px gap
     const iconContainer = document.createElement("div");
     iconContainer.style.display = "flex"; // Flexbox to hold icons
-    iconContainer.style.gap = "5px"; // Add 1px gap between icons
+    iconContainer.style.gap = "5px"; // Add 5px gap between icons
 
     // Add copy button
     copyButton.className = "material-symbols-outlined";
@@ -212,7 +214,10 @@ function createStickyNote() {
     cancelButton.style.color = "black";
     cancelButton.style.cursor = "pointer";
     cancelButton.addEventListener("click", () => {
-        note.remove();
+        note.style.opacity = "0"; // Start fade-out animation
+        setTimeout(() => {
+            note.remove(); // Remove note after animation
+        }, 300); // Duration of the fade-out animation
     });
     iconContainer.appendChild(cancelButton);
 
@@ -305,4 +310,19 @@ function createStickyNote() {
         return false;
     };
 }
+
+// Add the CSS for paper-cutting animation
+const style = document.createElement('style');
+style.textContent = `
+    @keyframes paperCut {
+         0% { transform: scaleX(1); opacity: 1; }
+         100% { transform: scaleX(0); opacity: 0; }
+    }
+
+    .note-cut {
+        animation: paperCut 300ms ease forwards;
+    }
+`;
+document.head.appendChild(style);
+
 
