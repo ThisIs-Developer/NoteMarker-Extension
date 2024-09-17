@@ -101,10 +101,10 @@ document.getElementById("sticky-note").addEventListener("click", () => {
 
 function createStickyNote() {
     // Add Material Symbols Outlined stylesheet dynamically if not already included
-    if (!document.querySelector("link[href='https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,200,0,0']")) {
+    if (!document.querySelector("link[href='https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,250,0,0']")) {
         const link = document.createElement("link");
         link.rel = "stylesheet";
-        link.href = "https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,2400,0,0";
+        link.href = "https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,250,0,0";
         document.head.appendChild(link);
     }
 
