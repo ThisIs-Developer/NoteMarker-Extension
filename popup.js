@@ -31,7 +31,6 @@ function showColorBoxAboveSelection() {
       const range = selection.getRangeAt(0);
       const rect = range.getBoundingClientRect();
 
-      // Create color selector box
       const colorBox = document.createElement("div");
       colorBox.id = 'highlight-toolbar';
       colorBox.style.position = "absolute";
@@ -44,7 +43,6 @@ function showColorBoxAboveSelection() {
       colorBox.style.padding = "5px";
       colorBox.style.zIndex = "10000";
       
-      // Color options
       const colors = ["yellow", "lightblue", "lightgreen", "pink", "orange"];
       colors.forEach(color => {
           const colorButton = document.createElement("div");
@@ -56,7 +54,7 @@ function showColorBoxAboveSelection() {
           colorButton.style.cursor = "pointer";
           colorButton.addEventListener("click", () => {
               chrome.scripting.executeScript({
-                  target: { tabId: chrome.tabs.TAB_ID }, // Placeholder, will be dynamically replaced
+                  target: { tabId: chrome.tabs.TAB_ID },
                   function: highlightSelectedText,
                   args: [color]
               });
@@ -100,7 +98,6 @@ document.getElementById("sticky-note").addEventListener("click", () => {
 });
 
 function createStickyNote() {
-    // Add Material Symbols Outlined stylesheet dynamically if not already included
     if (!document.querySelector("link[href='https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,250,0,0']")) {
         const link = document.createElement("link");
         link.rel = "stylesheet";
@@ -108,7 +105,6 @@ function createStickyNote() {
         document.head.appendChild(link);
     }
 
-    // Create the note container and elements
     const note = document.createElement("div");
     const noteTopBar = document.createElement("div");
     const noteText = document.createElement("textarea");
@@ -117,7 +113,6 @@ function createStickyNote() {
     const cancelButton = document.createElement("span");
     const colorBox = document.createElement("div");
 
-    // Note container styles
     note.style.position = "absolute";
     note.style.top = window.scrollY + "px";
     note.style.left = "10px";
@@ -126,9 +121,8 @@ function createStickyNote() {
     note.style.border = "1px solid black";
     note.style.borderRadius = "10px";
     note.style.zIndex = "10000";
-    note.style.transition = "opacity 300ms ease"; // Smooth transition for opacity
+    note.style.transition = "opacity 300ms ease";
 
-    // Top bar styles
     noteTopBar.style.background = "white";
     noteTopBar.style.padding = "5px";
     noteTopBar.style.cursor = "move";
@@ -139,49 +133,43 @@ function createStickyNote() {
     noteTopBar.style.borderTopLeftRadius = "10px";
     noteTopBar.style.borderTopRightRadius = "10px";
 
-    // Time formatting
     const date = new Date();
     const hours = date.getHours() % 12 || 12;
     const minutes = date.getMinutes().toString().padStart(2, '0');
     const ampm = date.getHours() >= 12 ? 'PM' : 'AM';
     const formattedTime = `${hours}:${minutes} ${ampm}`;
 
-    // Date formatting
     const formattedDate = `${date.getDate().toString().padStart(2, '0')}-${(date.getMonth() + 1).toString().padStart(2, '0')}-${date.getFullYear()}`;
 
     const timeText = document.createElement("span");
     timeText.textContent = formattedTime;
     timeText.style.color = "black";
     timeText.style.cursor = "pointer";
-    timeText.style.transition = "opacity 300ms ease"; // Add transition effect
-    timeText.style.opacity = "1"; // Ensure opacity starts at 1
+    timeText.style.transition = "opacity 300ms ease";
+    timeText.style.opacity = "1";
 
-    // Show date on hover
     timeText.addEventListener("mouseover", () => {
-        timeText.style.opacity = "0"; // Fade out effect
+        timeText.style.opacity = "0";
         setTimeout(() => {
             timeText.textContent = formattedDate;
-            timeText.style.opacity = "1"; // Fade in effect
-        }, 300); // Duration of the fade out
+            timeText.style.opacity = "1";
+        }, 300);
     });
 
-    // Show time on mouse out
     timeText.addEventListener("mouseout", () => {
-        timeText.style.opacity = "0"; // Fade out effect
+        timeText.style.opacity = "0";
         setTimeout(() => {
             timeText.textContent = formattedTime;
-            timeText.style.opacity = "1"; // Fade in effect
-        }, 300); // Duration of the fade out
+            timeText.style.opacity = "1";
+        }, 300);
     });
 
     noteTopBar.appendChild(timeText);
 
-    // Container for icons to ensure 5px gap
     const iconContainer = document.createElement("div");
-    iconContainer.style.display = "flex"; // Flexbox to hold icons
-    iconContainer.style.gap = "5px"; // Add 5px gap between icons
+    iconContainer.style.display = "flex";
+    iconContainer.style.gap = "5px";
 
-    // Add copy button
     copyButton.className = "material-symbols-outlined";
     copyButton.textContent = "content_copy";
     copyButton.style.fontFamily = "'Material Symbols Outlined'";
@@ -191,14 +179,13 @@ function createStickyNote() {
     copyButton.addEventListener("click", () => {
         noteText.select();
         document.execCommand("copy");
-        copyButton.textContent = "done"; // Change icon after copying
+        copyButton.textContent = "done";
         setTimeout(() => {
-            copyButton.textContent = "content_copy"; // Reset icon after 1 second
+            copyButton.textContent = "content_copy"; 
         }, 1000);
     });
     iconContainer.appendChild(copyButton);
 
-    // Add color change button
     colorButton.className = "material-symbols-outlined";
     colorButton.textContent = "palette";
     colorButton.style.fontFamily = "'Material Symbols Outlined'";
@@ -207,24 +194,21 @@ function createStickyNote() {
     colorButton.style.fontWeight = "300";
     iconContainer.appendChild(colorButton);
 
-    // Add cancel button
     cancelButton.className = "material-symbols-outlined";
     cancelButton.textContent = "close";
     cancelButton.style.fontFamily = "'Material Symbols Outlined'";
     cancelButton.style.color = "black";
     cancelButton.style.cursor = "pointer";
     cancelButton.addEventListener("click", () => {
-        note.style.opacity = "0"; // Start fade-out animation
+        note.style.opacity = "0";
         setTimeout(() => {
-            note.remove(); // Remove note after animation
-        }, 300); // Duration of the fade-out animation
+            note.remove(); 
+        }, 300);
     });
     iconContainer.appendChild(cancelButton);
 
-    // Add icon container to the top bar
     noteTopBar.appendChild(iconContainer);
 
-    // Create color selection box (hidden by default)
     colorBox.style.display = "none";
     colorBox.style.position = "absolute";
     colorBox.style.top = "30px";
@@ -237,7 +221,6 @@ function createStickyNote() {
     colorBox.style.gap = "5px";
     colorBox.style.zIndex = "10001";
 
-    // Hex color options
     const hexColors = ["#FFFF00", "#ADD8E6", "#90EE90", "#FFC0CB", "#FFA500"];
     hexColors.forEach(color => {
         const colorOption = document.createElement("div");
@@ -253,12 +236,10 @@ function createStickyNote() {
         colorBox.appendChild(colorOption);
     });
 
-    // Show/hide color selection box on click
     colorButton.addEventListener("click", () => {
         colorBox.style.display = colorBox.style.display === "none" ? "flex" : "none";
     });
 
-    // Create note text area
     noteText.placeholder = "Enter note here...";
     noteText.style.width = "100%";
     noteText.style.height = "100px";
@@ -269,7 +250,6 @@ function createStickyNote() {
     noteText.style.fontFamily = "'Arial', sans-serif";
     noteText.style.fontSize = "14px";
 
-    // Apply CSS for placeholder text color
     const style = document.createElement('style');
     style.textContent = `
         textarea::placeholder {
@@ -290,13 +270,11 @@ function createStickyNote() {
     `;
     document.head.appendChild(style);
 
-    // Append elements to note
     note.appendChild(noteTopBar);
     note.appendChild(noteText);
     note.appendChild(colorBox);
     document.body.appendChild(note);
 
-    // Make the note draggable
     noteTopBar.onmousedown = function (event) {
         let shiftX = event.clientX - note.getBoundingClientRect().left;
         let shiftY = event.clientY - note.getBoundingClientRect().top;
@@ -323,7 +301,6 @@ function createStickyNote() {
     };
 }
 
-// Add the CSS for paper-cutting animation
 const style = document.createElement('style');
 style.textContent = `
     @keyframes paperCut {
@@ -336,5 +313,3 @@ style.textContent = `
     }
 `;
 document.head.appendChild(style);
-
-

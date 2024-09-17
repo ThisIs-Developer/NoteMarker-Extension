@@ -1,8 +1,8 @@
 {
   "manifest_version": 3,
-  "name": "Webpage Annotator",
-  "version": "1.0",
-  "description": "Annotate and highlight text on web pages.",
+  "name": "NoteMarker",
+  "version": "2.0.2",
+  "description": "Effortlessly highlight text and jot down notes on any webpage. Enjoy vibrant colors and a sleek, intuitive interface.",
   "permissions": ["storage", "activeTab", "scripting"],
   "action": {
     "default_popup": "popup.html",
