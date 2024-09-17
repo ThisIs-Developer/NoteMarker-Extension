@@ -151,13 +151,25 @@ function createStickyNote() {
     timeText.textContent = formattedTime;
     timeText.style.color = "black";
     timeText.style.cursor = "pointer";
+    timeText.style.transition = "opacity 0.5s ease"; // Add transition effect
+    timeText.style.opacity = "1"; // Ensure opacity starts at 1
 
     // Show date on hover
     timeText.addEventListener("mouseover", () => {
-        timeText.textContent = formattedDate;
+        timeText.style.opacity = "0"; // Fade out effect
+        setTimeout(() => {
+            timeText.textContent = formattedDate;
+            timeText.style.opacity = "1"; // Fade in effect
+        }, 300); // Duration of the fade out
     });
+
+    // Show time on mouse out
     timeText.addEventListener("mouseout", () => {
-        timeText.textContent = formattedTime;
+        timeText.style.opacity = "0"; // Fade out effect
+        setTimeout(() => {
+            timeText.textContent = formattedTime;
+            timeText.style.opacity = "1"; // Fade in effect
+        }, 300); // Duration of the fade out
     });
 
     noteTopBar.appendChild(timeText);
