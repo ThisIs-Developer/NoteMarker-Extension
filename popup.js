@@ -7,15 +7,6 @@ document.getElementById("highlight").addEventListener("click", () => {
   });
 });
 
-document.getElementById("sticky-note").addEventListener("click", () => {
-  chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
-      chrome.scripting.executeScript({
-          target: { tabId: tabs[0].id },
-          function: addStickyNote
-      });
-  });
-});
-
 document.getElementById("clear").addEventListener("click", () => {
   chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
       chrome.scripting.executeScript({
