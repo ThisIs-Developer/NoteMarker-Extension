@@ -23,7 +23,7 @@
     }
   },
   "background": {
-    "service_worker": "scripts/background.js"
+    "scripts": ["scripts/background.js"]
   },
   "content_scripts": [
     {
@@ -44,5 +44,11 @@
   ],
   "host_permissions": [
     "<all_urls>"
-  ]
+  ],
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "{97757c2e-1328-4d1c-a840-e81a56c33328}",
+      "strict_min_version": "109.0"
+    }
+  }
 }
