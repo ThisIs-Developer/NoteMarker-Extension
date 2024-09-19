@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "NoteMarker",
-  "version": "2.0.4",
+  "version": "2.0.5",
   "description": "Effortlessly highlight text and jot down notes on any webpage. Enjoy vibrant colors, intuitive interface, and customizable sticky notes.",
   "permissions": [
     "storage",
@@ -53,5 +53,7 @@
       "id": "{97757c2e-1328-4d1c-a840-e81a56c33328}",
       "strict_min_version": "109.0"
     }
-  }
+  },
+  "keywords": ["notes", "highlight", "sticky notes", "annotation"],
+  "category": "Productivity"
 }
