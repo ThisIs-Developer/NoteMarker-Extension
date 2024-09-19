@@ -1,74 +1,71 @@
 document.getElementById("highlight").addEventListener("click", () => {
-  chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
-      chrome.scripting.executeScript({
-          target: { tabId: tabs[0].id },
-          function: showColorBoxAboveSelection
-      });
-  });
+    browser.tabs.query({ active: true, currentWindow: true }).then((tabs) => {
+        browser.scripting.executeScript({
+            target: { tabId: tabs[0].id },
+            func: showColorBoxAboveSelection
+        });
+    });
 });
 
 document.getElementById("clear").addEventListener("click", () => {
-  chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
-      chrome.scripting.executeScript({
-          target: { tabId: tabs[0].id },
-          function: clearAnnotations
-      });
-  });
+    browser.tabs.query({ active: true, currentWindow: true }).then((tabs) => {
+        browser.scripting.executeScript({
+            target: { tabId: tabs[0].id },
+            func: clearAnnotations
+        });
+    });
 });
 
+document.getElementById("sticky-note").addEventListener("click", () => {
+    browser.tabs.query({ active: true, currentWindow: true }).then((tabs) => {
+        browser.scripting.executeScript({
+            target: { tabId: tabs[0].id },
+            func: createStickyNote
+        });
+    });
+});
+
+
 function showColorBoxAboveSelection() {
-  const selection = window.getSelection();
-  if (selection.rangeCount > 0) {
-      const range = selection.getRangeAt(0);
-      const rect = range.getBoundingClientRect();
+    const selection = window.getSelection();
+    if (selection.rangeCount > 0) {
+        const range = selection.getRangeAt(0);
+        const rect = range.getBoundingClientRect();
 
-      const colorBox = document.createElement("div");
-      colorBox.id = 'highlight-toolbar';
-      colorBox.style.position = "absolute";
-      colorBox.style.top = `${window.scrollY + rect.top - 40}px`;
-      colorBox.style.left = `${window.scrollX + rect.left}px`;
-      colorBox.style.display = "flex";
-      colorBox.style.border = "1px solid #ccc";
-      colorBox.style.borderRadius = "10px";
-      colorBox.style.backgroundColor = "white";
-      colorBox.style.padding = "5px";
-      colorBox.style.zIndex = "10000";
-      
-      const colors = ["yellow", "lightblue", "lightgreen", "pink", "orange"];
-      colors.forEach(color => {
-          const colorButton = document.createElement("div");
-          colorButton.style.backgroundColor = color;
-          colorButton.style.width = "20px";
-          colorButton.style.height = "20px";
-          colorButton.style.borderRadius = "50%";
-          colorButton.style.margin = "2px";
-          colorButton.style.cursor = "pointer";
-          colorButton.addEventListener("click", () => {
-              chrome.scripting.executeScript({
-                  target: { tabId: chrome.tabs.TAB_ID },
-                  function: highlightSelectedText,
-                  args: [color]
-              });
-              document.body.removeChild(colorBox);
-          });
-          colorBox.appendChild(colorButton);
-      });
+        const colorBox = document.createElement("div");
+        colorBox.id = 'highlight-toolbar';
+        colorBox.style.position = "absolute";
+        colorBox.style.top = `${window.scrollY + rect.top - 40}px`;
+        colorBox.style.left = `${window.scrollX + rect.left}px`;
+        colorBox.style.display = "flex";
+        colorBox.style.border = "1px solid #ccc";
+        colorBox.style.borderRadius = "10px";
+        colorBox.style.backgroundColor = "white";
+        colorBox.style.padding = "5px";
+        colorBox.style.zIndex = "10000";
+        
+        const colors = ["yellow", "lightblue", "lightgreen", "pink", "orange"];
+        colors.forEach(color => {
+            const colorButton = document.createElement("div");
+            colorButton.style.backgroundColor = color;
+            colorButton.style.width = "20px";
+            colorButton.style.height = "20px";
+            colorButton.style.borderRadius = "50%";
+            colorButton.style.margin = "2px";
+            colorButton.style.cursor = "pointer";
+            colorButton.addEventListener("click", () => {
+                browser.scripting.executeScript({
+                    target: { tabId: tabs[0].id },
+                    func: highlightSelectedText,
+                    args: [color]
+                });
+                document.body.removeChild(colorBox);
+            });
+            colorBox.appendChild(colorButton);
+        });
 
-      document.body.appendChild(colorBox);
-  }
-
-  function highlightSelectedText(color) {
-      const selection = window.getSelection();
-      if (selection.toString().length > 0) {
-          const span = document.createElement("span");
-          span.style.backgroundColor = color;
-          span.textContent = selection.toString();
-          
-          const range = selection.getRangeAt(0);
-          range.deleteContents();
-          range.insertNode(span);
-      }
-  }
+        document.body.appendChild(colorBox);
+    }
 }
 
 function clearAnnotations() {
@@ -78,15 +75,6 @@ function clearAnnotations() {
   const notes = document.querySelectorAll("div[contentEditable='true']");
   notes.forEach(note => note.remove());
 }
-
-document.getElementById("sticky-note").addEventListener("click", () => {
-    chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
-        chrome.scripting.executeScript({
-            target: { tabId: tabs[0].id },
-            function: createStickyNote
-        });
-    });
-});
 
 function createStickyNote() {
     if (!document.querySelector("link[href='https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,250,0,0']")) {

@@ -1,4 +1,4 @@
-# NoteMarker - ![Static Badge](https://img.shields.io/badge/release-v1.0.1-beta)
+# NoteMarker - ![Static Badge](https://img.shields.io/badge/release-v2.0.2-beta)
 
 ## Overview
 
