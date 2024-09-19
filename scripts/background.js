@@ -1,10 +1,10 @@
-chrome.runtime.onInstalled.addListener(() => {
+browser.runtime.onInstalled.addListener(() => {
   console.log("Webpage Annotator installed.");
 });
 
-chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
+browser.runtime.onMessage.addListener((message, sender, sendResponse) => {
   if (message.action === "saveAnnotations") {
-      chrome.storage.local.set({ annotations: message.data }, () => {
+      browser.storage.local.set({ annotations: message.data }).then(() => {
           console.log("Annotations saved.");
           sendResponse({ status: "success" });
       });
@@ -12,7 +12,7 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
   }
 
   if (message.action === "getAnnotations") {
-      chrome.storage.local.get(["annotations"], (result) => {
+      browser.storage.local.get(["annotations"]).then(result => {
           sendResponse({ annotations: result.annotations || [] });
       });
       return true;
