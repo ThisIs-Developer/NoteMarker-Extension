@@ -69,11 +69,14 @@ function showColorBoxAboveSelection() {
 }
 
 function clearAnnotations() {
-  const highlights = document.querySelectorAll("span[style*='background-color:']");
-  highlights.forEach(highlight => highlight.remove());
-
-  const notes = document.querySelectorAll("div[contentEditable='true']");
-  notes.forEach(note => note.remove());
+    const highlights = document.querySelectorAll("span[style*='background-color:']");
+    highlights.forEach(highlight => {
+        const parent = highlight.parentNode;
+        while (highlight.firstChild) {
+            parent.insertBefore(highlight.firstChild, highlight);
+        }
+        parent.removeChild(highlight);
+    });
 }
 
 function createStickyNote() {
