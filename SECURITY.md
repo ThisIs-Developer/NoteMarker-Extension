@@ -16,7 +16,7 @@ The security of your data is a top priority for us at NoteMarker. This document 
 
 ## Reporting Security Issues
 
-If you discover any security vulnerabilities or have concerns about the security of NoteMarker, please contact us immediately at [Your Contact Information]. We take all reports seriously and will investigate them promptly.
+If you discover any security vulnerabilities or have concerns about the security of NoteMarker, please contact us immediately at baivabsarkar@gmail.com. We take all reports seriously and will investigate them promptly.
 
 ## Changes to This Security Policy
 
