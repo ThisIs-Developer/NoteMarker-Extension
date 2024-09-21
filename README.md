@@ -125,7 +125,7 @@ NoteMarker is licensed under the GNU General Public License v3.0. See the [LICEN
 
 ## Contact
 
-Project Maintainer: Baivab Sarkar - your.email@example.com
+Project Maintainer: Baivab Sarkar - baivabsarkar@gmail.com
 
 Project Link: [https://github.com/ThisIs-Developer/NoteMarker-Extension](https://github.com/ThisIs-Developer/NoteMarker-Extension)
 
