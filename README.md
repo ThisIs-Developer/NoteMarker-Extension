@@ -129,7 +129,7 @@ Project Maintainer: Baivab Sarkar - your.email@example.com
 
 Project Link: [https://github.com/ThisIs-Developer/NoteMarker-Extension](https://github.com/ThisIs-Developer/NoteMarker-Extension)
 
-For support or inquiries, please [open an issue](https://github.com/ThisIs-Developer/NoteMarker-Extension/issues) or contact us at support@notemarker.com.
+For support or inquiries, please [open an issue](https://github.com/ThisIs-Developer/NoteMarker-Extension/issues).
 
 ---
 
