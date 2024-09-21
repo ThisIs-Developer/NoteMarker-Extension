@@ -2,10 +2,10 @@
 
 NoteMarker is a powerful and intuitive browser extension designed to revolutionize your web browsing experience. By seamlessly integrating highlighting and note-taking capabilities directly into your browser, NoteMarker empowers users to efficiently capture, organize, and retrieve information from any webpage.
 
-[![Firefox Add-on](https://img.shields.io/amo/v/notemarker.svg?style=flat-square)](https://addons.mozilla.org/en-US/firefox/addon/notemarker/)
-[![Chrome Web Store](https://img.shields.io/chrome-web-store/v/your-extension-id.svg?style=flat-square)](https://chrome.google.com/webstore/detail/your-extension-id)
-[![GitHub release](https://img.shields.io/github/release/ThisIs-Developer/NoteMarker-Extension.svg?style=flat-square)](https://github.com/ThisIs-Developer/NoteMarker-Extension/releases)
-[![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg?style=flat-square)](https://www.gnu.org/licenses/gpl-3.0)
+[![Firefox Add-on](https://img.shields.io/amo/v/notemarker.svg?style=flat)](https://addons.mozilla.org/en-US/firefox/addon/notemarker/)
+[![Chrome Web Store](https://img.shields.io/chrome-web-store/v/your-extension-id.svg?style=flat)](https://chrome.google.com/webstore/detail/your-extension-id)
+[![GitHub release](https://img.shields.io/github/release/ThisIs-Developer/NoteMarker-Extension.svg?style=flat)](https://github.com/ThisIs-Developer/NoteMarker-Extension/releases)
+[![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg?style=flat)](https://www.gnu.org/licenses/gpl-3.0)
 
 ## Table of Contents
 
