@@ -2,6 +2,13 @@
 
 NoteMarker is a powerful and intuitive browser extension designed to revolutionize your web browsing experience. By seamlessly integrating highlighting and note-taking capabilities directly into your browser, NoteMarker empowers users to efficiently capture, organize, and retrieve information from any webpage.
 
+![chrome](https://github.com/user-attachments/assets/55b6ea39-7e62-420e-9d87-d28b5574f897)
+![edge](https://github.com/user-attachments/assets/7213bdab-2f03-4519-9c85-b35f47458dd4)
+![firefox](https://github.com/user-attachments/assets/3bf02c6f-a631-49ec-b870-4034166f766d)
+![brave](https://github.com/user-attachments/assets/c613c70f-1713-41ab-9a30-f8bceb8e922c)
+![opera](https://github.com/user-attachments/assets/37344015-ca7a-4865-9293-408d76dec32c)
+
+
 [![Firefox Add-on](https://img.shields.io/amo/v/notemarker.svg?style=flat&color=red)](https://addons.mozilla.org/en-US/firefox/addon/notemarker/)
 [![Chrome Extension - v2.0.3](https://img.shields.io/badge/Chrome-v2.0.3-brightgreen)](https://github.com/ThisIs-Developer/NoteMarker-Extension/releases)
 [![Microsoft Edge Extension - v2.0.3](https://img.shields.io/badge/Edge-v2.0.3-brightgreen)](https://github.com/ThisIs-Developer/NoteMarker-Extension/releases)
