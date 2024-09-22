@@ -69,16 +69,18 @@ For the latest development version:
 3. In Firefox, navigate to `about:debugging#/runtime/this-firefox`
 4. Click "Load Temporary Add-on" and select the downloaded file
 
-### Chrome, Edge, and other Chromium-based browsers
+### Chrome, Edge, Brave, Opera, and other Chromium-based browsers
 
-1. Visit the [Releases page](https://github.com/ThisIs-Developer/NoteMarker-Extension/releases)
-2. Download the latest `v2.0.3` release
-3. Unzip the downloaded file
+1. Visit the [Releases page](https://github.com/ThisIs-Developer/NoteMarker-Extension/releases).
+2. Download the latest release (`v2.0.3`).
+3. Unzip the downloaded file.
 4. In your browser, go to the extensions page:
    - Chrome: `chrome://extensions`
    - Edge: `edge://extensions`
-5. Enable "Developer mode" (usually a toggle in the top right)
-6. Click "Load unpacked" and select the unzipped extension folder
+   - Brave: `brave://extensions`
+   - Opera: `opera://extensions`
+5. Enable "Developer mode" (usually a toggle in the top right).
+6. Click "Load unpacked" and select the unzipped extension folder.
 
 ## Usage
 
