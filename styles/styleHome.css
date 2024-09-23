@@ -241,6 +241,26 @@ li ul {
     margin-bottom: 10px;
 }
 
+.download-button {
+    display: inline-block;
+    background-color: var(--primary-color);
+    color: white;
+    padding: 10px 15px;
+    text-decoration: none;
+    border-radius: var(--form-border-radius);
+    transition: background-color 0.3s ease;
+    margin: 10px 0;
+}
+
+.download-button:hover {
+    background-color: var(--hover-color);
+}
+
+.browser-image {
+    margin: 10px;
+    width: 50px;
+    height: auto;
+}
 
 @media (max-width: 768px) {
     .container {
