@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Browser Extension</title>
+    <style>
+        :root {
+            --primary-color: #3498db;
+            --hover-color: #2980b9;
+            --bg-color: #f4f4f4;
+            --text-color: #333;
+            --sidebar-width: 250px;
+            --form-bg-color: #fff;
+            --form-border-color: #ddd;
+            --form-border-radius: 5px;
+        }
+        body, html {
+            margin: 0;
+            padding: 0;
+            font-family: 'Arial', sans-serif;
+            height: 100%;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+        }
+        .container {
+            display: flex;
+            height: 100%;
+            position: relative;
+        }
+        .top-bar {
+            display: none;
+            background-color: #fff;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            padding: 10px 20px;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .sidebar {
+            width: var(--sidebar-width);
+            background-color: #fff;
+            box-shadow: 2px 0 10px rgba(0,0,0,0.1);
+            padding: 20px 0;
+            overflow-y: auto;
+        }
+        .content {
+            flex-grow: 1;
+            padding: 40px;
+            overflow-y: auto;
+            transition: all 0.3s ease;
+        }
+        .sidebar a {
+            display: block;
+            padding: 15px 25px;
+            color: var(--text-color);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            border-left: 5px solid transparent;
+        }
+        .sidebar a:hover {
+            background-color: var(--bg-color);
+        }
+        .sidebar a.active {
+            background-color: var(--bg-color);
+            color: var(--primary-color);
+            font-weight: bold;
+            border-left-color: var(--primary-color);
+        }
+        .sidebar .download-btn {
+            display: inline-block;
+            background-color: var(--primary-color);
+            color: white;
+            font-weight: bold;
+            padding: 10px 20px;
+            border-radius: 5px;
+            margin: 10px 15px; /* Adjust margin for better spacing */
+            text-align: center;
+            transition: background-color 0.3s ease;
+            cursor: pointer;
+        }
+        .sidebar .download-btn:hover {
+            background-color: var(--hover-color);
+        }
+        .feedback-section {
+            background-color: var(--form-bg-color);
+            padding: 20px;
+            border: 1px solid var(--form-border-color);
+            border-radius: var(--form-border-radius);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        .feedback-section h2 {
+            color: var(--primary-color);
+            margin-bottom: 15px;
+        }
+        .feedback-section label {
+            display: block;
+            margin: 10px 0 5px;
+            font-weight: bold;
+        }
+        .feedback-section input[type="text"],
+        .feedback-section input[type="email"],
+        .feedback-section textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid var(--form-border-color);
+            border-radius: var(--form-border-radius);
+            margin-bottom: 15px;
+            font-size: 14px;
+        }
+        .feedback-section button {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: var(--form-border-radius);
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        .feedback-section button:hover {
+            background-color: var(--hover-color);
+        }
+        .mobile-menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+        }
+        .section {
+            display: none;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        .section.active {
+            display: block;
+            opacity: 1;
+        }
+        h1, h2 {
+            margin-top: 0;
+            color: var(--primary-color);
+        }
+        p {
+            line-height: 1.6;
+        }
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column;
+            }
+            .top-bar {
+                display: flex;
+            }
+            .sidebar {
+                width: 100%;
+                display: none;
+            }
+            .sidebar.active {
+                display: block;
+            }
+            .content {
+                padding: 20px;
+            }
+            .mobile-menu-toggle {
+                display: block;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="top-bar">
+            <a href="#downloads" class="download-btn" data-section="downloads">Download</a>
+            <button class="mobile-menu-toggle">☰</button>
+        </div>
+        <div class="sidebar">
+            <div class="download-btn" data-section="downloads">Download</div>
+            <a href="#about" data-section="about" class="active">About</a>
+            <a href="#privacy" data-section="privacy">Privacy Policy</a>
+            <a href="#license" data-section="license">License Page</a>
+            <a href="#release-notes" data-section="release-notes">Release Notes</a>
+            <a href="#changelog" data-section="changelog">Changelog</a>
+            <a href="#feedback" data-section="feedback">Report Feedback</a>
+            <a href="https://github.com/your-repo" target="_blank">Open Source (GitHub)</a>
+            <a href="update.json" target="_blank">update.json</a>
+        </div>
+        <div class="content">
+            <div id="downloads" class="section">
+                <h2>Download Options</h2>
+                <p>Choose your browser:</p>
+                <ul>
+                    <li><a href="https://addons.mozilla.org/en-US/firefox/addon/your-extension" target="_blank">Download for Firefox</a></li>
+                    <li><a href="https://chrome.google.com/webstore/detail/your-extension" target="_blank">Download for Chrome</a></li>
+                </ul>
+            </div>
+            <div id="about" class="section active">
+                <h1>About Our Extension</h1>
+                <p>Welcome to our browser extension. This powerful tool is designed to enhance your browsing experience by [brief description of main features].</p>
+                <p>Our team of dedicated developers is committed to providing you with a seamless, efficient, and secure browsing enhancement.</p>
+            </div>
+            <div id="privacy" class="section">
+                <h2>Privacy Policy</h2>
+                <p>At [Extension Name], we take your privacy seriously. This policy outlines how we collect, use, and protect your data:</p>
+                <ul>
+                    <li>We only collect anonymous usage statistics to improve our service.</li>
+                    <li>Your personal data is never sold or shared with third parties.</li>
+                    <li>All data transmission is encrypted using industry-standard protocols.</li>
+                </ul>
+            </div>
+            <div id="license" class="section">
+                <h2>License Agreement</h2>
+                <p>By using [Extension Name], you agree to the following terms:</p>
+                <ol>
+                    <li>This extension is provided "as is" without warranty of any kind.</li>
+                    <li>You may not redistribute or sell this extension without explicit permission.</li>
+                    <li>We reserve the right to update these terms at any time.</li>
+                </ol>
+            </div>
+            <div id="release-notes" class="section">
+                <h2>Release Notes</h2>
+                <h3>Version 2.0 (Latest)</h3>
+                <ul>
+                    <li>Added new feature: [description]</li>
+                    <li>Improved performance by optimizing [process]</li>
+                    <li>Fixed bug: [description]</li>
+                </ul>
+                <h3>Version 1.5</h3>
+                <ul>
+                    <li>Introduced [feature] functionality</li>
+                    <li>Updated user interface for better usability</li>
+                </ul>
+            </div>
+            <div id="changelog" class="section">
+                <h2>Changelog</h2>
+                <ul>
+                    <li><strong>2.0.0</strong> (2023-09-15): Major update with new features and improvements</li>
+                    <li><strong>1.5.2</strong> (2023-08-01): Bug fixes and minor improvements</li>
+                    <li><strong>1.5.0</strong> (2023-07-15): New [feature] added</li>
+                    <li><strong>1.0.0</strong> (2023-06-01): Initial release</li>
+                </ul>
+            </div>
+            <div id="feedback" class="section">
+                <div class="feedback-section">
+                    <h2>Report Feedback</h2>
+                    <p>We value your input! Please use the form below to submit any bugs, suggestions, or comments:</p>
+                    <form id="feedbackForm">
+                        <label for="name">Name:</label>
+                        <input type="text" id="name" name="name" required>
+                        <label for="email">Email:</label>
+                        <input type="email" id="email" name="email" required>
+                        <label for="message">Feedback:</label>
+                        <textarea id="message" name="message" rows="4" required></textarea>
+                        <button type="submit">Submit Feedback</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        const sidebar = document.querySelector('.sidebar');
+        const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
+        const sidebarLinks = document.querySelectorAll('.sidebar a[data-section]');
+        const sections = document.querySelectorAll('.section');
+
+        mobileMenuToggle.addEventListener('click', () => {
+            sidebar.classList.toggle('active');
+        });
+
+        function setActiveSection(sectionId) {
+            sections.forEach(section => {
+                section.classList.remove('active');
+            });
+            sidebarLinks.forEach(link => {
+                link.classList.remove('active');
+            });
+
+            const activeSection = document.getElementById(sectionId);
+            const activeLink = document.querySelector(`.sidebar a[data-section="${sectionId}"]`);
+
+            if (activeSection) activeSection.classList.add('active');
+            if (activeLink) activeLink.classList.add('active');
+
+            if (window.innerWidth <= 768) {
+                sidebar.classList.remove('active');
+            }
+        }
+
+        sidebarLinks.forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                const sectionId = link.getAttribute('data-section');
+                setActiveSection(sectionId);
+            });
+        });
+
+        // Set initial active section to 'about'
+        setActiveSection('about');
+
+        // Handle feedback form submission
+        document.getElementById('feedbackForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+            alert('Feedback submitted! (This is a placeholder - implement actual submission logic)');
+        });
+
+        // Handle sidebar download button click
+        document.querySelector('.sidebar .download-btn').addEventListener('click', (e) => {
+            e.preventDefault();
+            setActiveSection('downloads');
+        });
+    </script>
+</body>
+</html>
