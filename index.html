@@ -63,6 +63,7 @@
             border-radius: 5px;
             text-align: center;
             transition: background-color 0.3s ease;
+            text-decoration: none;
         }
         .download-btn:hover {
             background-color: var(--hover-color);
@@ -91,6 +92,33 @@
         p {
             line-height: 1.6;
         }
+        .download-list {
+            list-style-type: none;
+            padding: 0;
+        }
+        .download-list li {
+            margin-bottom: 15px;
+        }
+        .download-list a {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: var(--primary-color);
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+        .download-list a:hover {
+            background-color: var(--hover-color);
+        }
+        .mobile-header {
+            display: none;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px;
+            background-color: var(--primary-color);
+            color: white;
+        }
         @media (max-width: 768px) {
             .container {
                 flex-direction: column;
@@ -98,24 +126,43 @@
             .sidebar {
                 width: 100%;
                 display: none;
+                position: absolute;
+                top: 60px;
+                left: 0;
+                right: 0;
+                z-index: 1000;
             }
             .sidebar.active {
                 display: block;
             }
             .content {
                 padding: 20px;
+                margin-top: 60px;
+            }
+            .mobile-header {
+                display: flex;
+                position: fixed;
+                top: 0;
+                left: 0;
+                right: 0;
+                z-index: 1001;
             }
             .mobile-menu-toggle {
                 display: block;
+                color: white;
+                font-size: 24px;
             }
         }
     </style>
 </head>
 <body>
+    <div class="mobile-header">
+        <a href="#download" class="download-btn" onclick="setActiveSection('download')">Download</a>
+        <button class="mobile-menu-toggle">⋮</button>
+    </div>
     <div class="container">
-        <button class="mobile-menu-toggle">☰</button>
         <div class="sidebar">
-            <a href="#" class="download-btn">Download</a>
+            <a href="#download" data-section="download">Download</a>
             <a href="#about" data-section="about">About</a>
             <a href="#privacy" data-section="privacy">Privacy Policy</a>
             <a href="#license" data-section="license">License Page</a>
@@ -126,7 +173,16 @@
             <a href="update.json" target="_blank">update.json</a>
         </div>
         <div class="content">
-            <div id="about" class="section active">
+            <div id="download" class="section">
+                <h1>Download Our Extension</h1>
+                <p>Choose your browser to download the extension:</p>
+                <ul class="download-list">
+                    <li><a href="#chrome-download">Download for Chrome</a></li>
+                    <li><a href="#firefox-download">Download for Firefox</a></li>
+                    <li><a href="#edge-download">Download for Edge</a></li>
+                </ul>
+            </div>
+            <div id="about" class="section">
                 <h1>About Our Extension</h1>
                 <p>Welcome to our browser extension. This powerful tool is designed to enhance your browsing experience by [brief description of main features].</p>
                 <p>Our team of dedicated developers is committed to providing you with a seamless, efficient, and secure browsing enhancement.</p>
@@ -224,8 +280,8 @@
             });
         });
 
-        // Set initial active section
-        setActiveSection('about');
+        // Set initial active section to download
+        setActiveSection('download');
 
         // Handle form submission (you'll need to implement the actual submission logic)
         document.getElementById('feedbackForm').addEventListener('submit', (e) => {
