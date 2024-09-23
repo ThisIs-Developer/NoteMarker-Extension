@@ -58,6 +58,6 @@ document.getElementById('closeOverlay').addEventListener('click', function () {
 });
 
 document.getElementById('imageOverlay').addEventListener('click', function () {
-    this.style.display = 'none'; // Hide overlay
+    this.style.display = 'none'; 
 });
 
