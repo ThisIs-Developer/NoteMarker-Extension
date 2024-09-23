@@ -66,20 +66,17 @@
             font-weight: bold;
             border-left-color: var(--primary-color);
         }
-        .sidebar .download-btn {
-            display: inline-block;
+        .sidebar .logo {
+            display: block;
             background-color: var(--primary-color);
             color: white;
             font-weight: bold;
             padding: 10px 20px;
             border-radius: 5px;
-            margin: 10px 15px; /* Adjust margin for better spacing */
+            margin: 10px 15px;
             text-align: center;
-            transition: background-color 0.3s ease;
-            cursor: pointer;
-        }
-        .sidebar .download-btn:hover {
-            background-color: var(--hover-color);
+            font-size: 24px;
+            cursor: default;
         }
         .feedback-section {
             background-color: var(--form-bg-color);
@@ -168,12 +165,13 @@
 <body>
     <div class="container">
         <div class="top-bar">
-            <a href="#downloads" class="download-btn" data-section="downloads">Download</a>
+            <div class="logo">NoteMarker</div>
             <button class="mobile-menu-toggle">☰</button>
         </div>
         <div class="sidebar">
-            <div class="download-btn" data-section="downloads">Download</div>
+            <div class="logo">NoteMarker</div>
             <a href="#about" data-section="about" class="active">About</a>
+            <a href="#download" data-section="download">Download</a>
             <a href="#privacy" data-section="privacy">Privacy Policy</a>
             <a href="#license" data-section="license">License Page</a>
             <a href="#release-notes" data-section="release-notes">Release Notes</a>
@@ -183,18 +181,18 @@
             <a href="update.json" target="_blank">update.json</a>
         </div>
         <div class="content">
-            <div id="downloads" class="section">
+            <div id="about" class="section active">
+                <h1>About Our Extension</h1>
+                <p>Welcome to our browser extension. This powerful tool is designed to enhance your browsing experience by [brief description of main features].</p>
+                <p>Our team of dedicated developers is committed to providing you with a seamless, efficient, and secure browsing enhancement.</p>
+            </div>
+            <div id="download" class="section">
                 <h2>Download Options</h2>
                 <p>Choose your browser:</p>
                 <ul>
                     <li><a href="https://addons.mozilla.org/en-US/firefox/addon/your-extension" target="_blank">Download for Firefox</a></li>
                     <li><a href="https://chrome.google.com/webstore/detail/your-extension" target="_blank">Download for Chrome</a></li>
                 </ul>
-            </div>
-            <div id="about" class="section active">
-                <h1>About Our Extension</h1>
-                <p>Welcome to our browser extension. This powerful tool is designed to enhance your browsing experience by [brief description of main features].</p>
-                <p>Our team of dedicated developers is committed to providing you with a seamless, efficient, and secure browsing enhancement.</p>
             </div>
             <div id="privacy" class="section">
                 <h2>Privacy Policy</h2>
@@ -233,77 +231,61 @@
                 <ul>
                     <li><strong>2.0.0</strong> (2023-09-15): Major update with new features and improvements</li>
                     <li><strong>1.5.2</strong> (2023-08-01): Bug fixes and minor improvements</li>
-                    <li><strong>1.5.0</strong> (2023-07-15): New [feature] added</li>
-                    <li><strong>1.0.0</strong> (2023-06-01): Initial release</li>
+                    <li><strong>1.5.0</strong> (2023-07-15): UI update and feature enhancement</li>
                 </ul>
             </div>
             <div id="feedback" class="section">
+                <h2>Feedback Form</h2>
                 <div class="feedback-section">
-                    <h2>Report Feedback</h2>
-                    <p>We value your input! Please use the form below to submit any bugs, suggestions, or comments:</p>
-                    <form id="feedbackForm">
-                        <label for="name">Name:</label>
-                        <input type="text" id="name" name="name" required>
-                        <label for="email">Email:</label>
-                        <input type="email" id="email" name="email" required>
-                        <label for="message">Feedback:</label>
-                        <textarea id="message" name="message" rows="4" required></textarea>
+                    <form id="feedback-form">
+                        <label for="name">Name</label>
+                        <input type="text" id="name" name="name" placeholder="Enter your name">
+
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" placeholder="Enter your email">
+
+                        <label for="feedback">Feedback</label>
+                        <textarea id="feedback" name="feedback" placeholder="Enter your feedback" rows="4"></textarea>
+
                         <button type="submit">Submit Feedback</button>
                     </form>
                 </div>
             </div>
         </div>
     </div>
+
     <script>
-        const sidebar = document.querySelector('.sidebar');
-        const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
-        const sidebarLinks = document.querySelectorAll('.sidebar a[data-section]');
-        const sections = document.querySelectorAll('.section');
+        document.querySelectorAll('.sidebar a').forEach(function (link) {
+            link.addEventListener('click', function (event) {
+                event.preventDefault();
+                document.querySelectorAll('.sidebar a').forEach(function (link) {
+                    link.classList.remove('active');
+                });
+                this.classList.add('active');
 
-        mobileMenuToggle.addEventListener('click', () => {
-            sidebar.classList.toggle('active');
-        });
-
-        function setActiveSection(sectionId) {
-            sections.forEach(section => {
-                section.classList.remove('active');
-            });
-            sidebarLinks.forEach(link => {
-                link.classList.remove('active');
-            });
-
-            const activeSection = document.getElementById(sectionId);
-            const activeLink = document.querySelector(`.sidebar a[data-section="${sectionId}"]`);
-
-            if (activeSection) activeSection.classList.add('active');
-            if (activeLink) activeLink.classList.add('active');
-
-            if (window.innerWidth <= 768) {
-                sidebar.classList.remove('active');
-            }
-        }
-
-        sidebarLinks.forEach(link => {
-            link.addEventListener('click', (e) => {
-                e.preventDefault();
-                const sectionId = link.getAttribute('data-section');
-                setActiveSection(sectionId);
+                const sectionId = this.getAttribute('data-section');
+                document.querySelectorAll('.section').forEach(function (section) {
+                    section.classList.remove('active');
+                });
+                document.getElementById(sectionId).classList.add('active');
             });
         });
 
-        // Set initial active section to 'about'
-        setActiveSection('about');
+        document.querySelector('.mobile-menu-toggle').addEventListener('click', function () {
+            document.querySelector('.sidebar').classList.toggle('active');
+        });
 
         // Handle feedback form submission
-        document.getElementById('feedbackForm').addEventListener('submit', (e) => {
-            e.preventDefault();
-            alert('Feedback submitted! (This is a placeholder - implement actual submission logic)');
-        });
+        document.getElementById('feedback-form').addEventListener('submit', function (event) {
+            event.preventDefault();
 
-        // Handle sidebar download button click
-        document.querySelector('.sidebar .download-btn').addEventListener('click', (e) => {
-            e.preventDefault();
-            setActiveSection('downloads');
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const feedback = document.getElementById('feedback').value;
+
+            const githubUrl = 'https://github.com/ThisIs-Developer/NoteMarker-Extension/issues'; // Your GitHub issues link
+
+            window.open(githubUrl, '_blank');
         });
     </script>
 </body>
