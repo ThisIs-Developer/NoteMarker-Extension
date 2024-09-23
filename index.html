@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Browser Extension Homepage</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            min-height: 100vh;
+            background-color: #f0f0f0;
+        }
+        #sidebar {
+            width: 250px;
+            background-color: #333;
+            color: #fff;
+            padding: 20px;
+            transition: transform 0.3s ease;
+        }
+        #sidebar h1 {
+            font-size: 1.5em;
+            margin-bottom: 20px;
+        }
+        #sidebar ul {
+            list-style-type: none;
+        }
+        #sidebar li {
+            margin-bottom: 10px;
+        }
+        #sidebar a {
+            color: #fff;
+            text-decoration: none;
+            display: block;
+            padding: 10px;
+            border-radius: 5px;
+            transition: background-color 0.2s ease;
+        }
+        #sidebar a:hover, #sidebar a.active {
+            background-color: #555;
+        }
+        #content {
+            flex-grow: 1;
+            padding: 20px;
+            background-color: #fff;
+        }
+        #content h2 {
+            margin-bottom: 20px;
+        }
+        #mobile-menu-btn {
+            display: none;
+            position: fixed;
+            top: 10px;
+            left: 10px;
+            z-index: 100;
+            background-color: #333;
+            color: #fff;
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+        }
+        @media (max-width: 768px) {
+            body {
+                flex-direction: column;
+            }
+            #sidebar {
+                width: 100%;
+                transform: translateX(-100%);
+                position: fixed;
+                top: 0;
+                left: 0;
+                height: 100vh;
+                z-index: 99;
+            }
+            #sidebar.open {
+                transform: translateX(0);
+            }
+            #mobile-menu-btn {
+                display: block;
+            }
+            #content {
+                margin-top: 50px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <button id="mobile-menu-btn">☰ Menu</button>
+    <nav id="sidebar">
+        <h1>Browser Extension</h1>
+        <ul>
+            <li><a href="#" data-content="about">About</a></li>
+            <li><a href="#" data-content="download">Download</a></li>
+            <li><a href="#" data-content="privacy">Privacy Policy</a></li>
+            <li><a href="#" data-content="license">License Page</a></li>
+            <li><a href="#" data-content="release">Release Notes</a></li>
+            <li><a href="#" data-content="changelog">Changelog</a></li>
+            <li><a href="#" data-content="feedback">Report Feedback</a></li>
+            <li><a href="#" data-content="github">Open Source GitHub Link</a></li>
+            <li><a href="#" data-content="update">update.json</a></li>
+        </ul>
+    </nav>
+    <main id="content">
+        <h2>About</h2>
+        <p>Welcome to our browser extension homepage. Select an option from the sidebar to learn more.</p>
+    </main>
+
+    <script>
+        const sidebar = document.getElementById('sidebar');
+        const content = document.getElementById('content');
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const links = sidebar.getElementsByTagName('a');
+
+        function loadContent(contentId) {
+            const h2 = content.querySelector('h2');
+            const p = content.querySelector('p');
+            
+            switch(contentId) {
+                case 'about':
+                    h2.textContent = 'About';
+                    p.textContent = 'Information about the browser extension\'s functionality.';
+                    break;
+                case 'download':
+                    h2.textContent = 'Download';
+                    p.textContent = 'Download links for various browsers.';
+                    break;
+                case 'privacy':
+                    h2.textContent = 'Privacy Policy';
+                    p.textContent = 'Privacy policy for the extension.';
+                    break;
+                case 'license':
+                    h2.textContent = 'License Page';
+                    p.textContent = 'Licensing terms for the extension.';
+                    break;
+                case 'release':
+                    h2.textContent = 'Release Notes';
+                    p.textContent = 'Summary of updates and version history.';
+                    break;
+                case 'changelog':
+                    h2.textContent = 'Changelog';
+                    p.textContent = 'Detailed changes in each version.';
+                    break;
+                case 'feedback':
+                    h2.textContent = 'Report Feedback';
+                    p.innerHTML = `
+                        <form id="feedback-form">
+                            <input type="text" placeholder="Your name" required><br><br>
+                            <input type="email" placeholder="Your email" required><br><br>
+                            <textarea placeholder="Your feedback" required></textarea><br><br>
+                            <button type="submit">Submit</button>
+                        </form>
+                    `;
+                    break;
+                case 'github':
+                    h2.textContent = 'Open Source GitHub Link';
+                    p.innerHTML = '<a href="https://github.com/your-repo" target="_blank">Visit our GitHub repository</a>';
+                    break;
+                case 'update':
+                    h2.textContent = 'update.json';
+                    p.textContent = 'Content or link to the update.json file.';
+                    break;
+            }
+        }
+
+        for (let link of links) {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                for (let l of links) {
+                    l.classList.remove('active');
+                }
+                this.classList.add('active');
+                loadContent(this.getAttribute('data-content'));
+                if (window.innerWidth <= 768) {
+                    sidebar.classList.remove('open');
+                }
+            });
+        }
+
+        mobileMenuBtn.addEventListener('click', function() {
+            sidebar.classList.toggle('open');
+        });
+
+        // Initial content load
+        loadContent('about');
+        links[0].classList.add('active');
+    </script>
+</body>
+</html>
