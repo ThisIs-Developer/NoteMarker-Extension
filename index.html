@@ -11,6 +11,9 @@
             --bg-color: #f4f4f4;
             --text-color: #333;
             --sidebar-width: 250px;
+            --form-bg-color: #fff;
+            --form-border-color: #ddd;
+            --form-border-radius: 5px;
         }
         body, html {
             margin: 0;
@@ -23,6 +26,15 @@
         .container {
             display: flex;
             height: 100%;
+            position: relative;
+        }
+        .top-bar {
+            display: none;
+            background-color: #fff;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            padding: 10px 20px;
+            align-items: center;
+            justify-content: space-between;
         }
         .sidebar {
             width: var(--sidebar-width);
@@ -54,18 +66,57 @@
             font-weight: bold;
             border-left-color: var(--primary-color);
         }
-        .download-btn {
+        .sidebar .download-btn {
             display: inline-block;
             background-color: var(--primary-color);
-            color: white !important;
-            padding: 12px 25px;
-            margin: 20px 25px;
+            color: white;
+            font-weight: bold;
+            padding: 10px 20px;
             border-radius: 5px;
+            margin: 10px 15px; /* Adjust margin for better spacing */
             text-align: center;
             transition: background-color 0.3s ease;
-            text-decoration: none;
+            cursor: pointer;
         }
-        .download-btn:hover {
+        .sidebar .download-btn:hover {
+            background-color: var(--hover-color);
+        }
+        .feedback-section {
+            background-color: var(--form-bg-color);
+            padding: 20px;
+            border: 1px solid var(--form-border-color);
+            border-radius: var(--form-border-radius);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        .feedback-section h2 {
+            color: var(--primary-color);
+            margin-bottom: 15px;
+        }
+        .feedback-section label {
+            display: block;
+            margin: 10px 0 5px;
+            font-weight: bold;
+        }
+        .feedback-section input[type="text"],
+        .feedback-section input[type="email"],
+        .feedback-section textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid var(--form-border-color);
+            border-radius: var(--form-border-radius);
+            margin-bottom: 15px;
+            font-size: 14px;
+        }
+        .feedback-section button {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: var(--form-border-radius);
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        .feedback-section button:hover {
             background-color: var(--hover-color);
         }
         .mobile-menu-toggle {
@@ -74,7 +125,6 @@
             border: none;
             font-size: 24px;
             cursor: pointer;
-            padding: 10px;
         }
         .section {
             display: none;
@@ -92,78 +142,38 @@
         p {
             line-height: 1.6;
         }
-        .download-list {
-            list-style-type: none;
-            padding: 0;
-        }
-        .download-list li {
-            margin-bottom: 15px;
-        }
-        .download-list a {
-            display: inline-block;
-            padding: 10px 20px;
-            background-color: var(--primary-color);
-            color: white;
-            text-decoration: none;
-            border-radius: 5px;
-            transition: background-color 0.3s ease;
-        }
-        .download-list a:hover {
-            background-color: var(--hover-color);
-        }
-        .mobile-header {
-            display: none;
-            justify-content: space-between;
-            align-items: center;
-            padding: 10px;
-            background-color: var(--primary-color);
-            color: white;
-        }
         @media (max-width: 768px) {
             .container {
                 flex-direction: column;
             }
+            .top-bar {
+                display: flex;
+            }
             .sidebar {
                 width: 100%;
                 display: none;
-                position: absolute;
-                top: 60px;
-                left: 0;
-                right: 0;
-                z-index: 1000;
             }
             .sidebar.active {
                 display: block;
             }
             .content {
                 padding: 20px;
-                margin-top: 60px;
-            }
-            .mobile-header {
-                display: flex;
-                position: fixed;
-                top: 0;
-                left: 0;
-                right: 0;
-                z-index: 1001;
             }
             .mobile-menu-toggle {
                 display: block;
-                color: white;
-                font-size: 24px;
             }
         }
     </style>
 </head>
 <body>
-    <div class="mobile-header">
-        <a href="#download" class="download-btn" onclick="setActiveSection('download')">Download</a>
-        <button class="mobile-menu-toggle">⋮</button>
-    </div>
     <div class="container">
+        <div class="top-bar">
+            <a href="#downloads" class="download-btn" data-section="downloads">Download</a>
+            <button class="mobile-menu-toggle">☰</button>
+        </div>
         <div class="sidebar">
-            <a href="#download" data-section="download">Download</a>
-            <a href="#about" data-section="about">About</a>
+            <div class="download-btn" data-section="downloads">Download</div>
+            <a href="#about" data-section="about" class="active">About</a>
             <a href="#privacy" data-section="privacy">Privacy Policy</a>
             <a href="#license" data-section="license">License Page</a>
             <a href="#release-notes" data-section="release-notes">Release Notes</a>
@@ -173,16 +183,15 @@
             <a href="update.json" target="_blank">update.json</a>
         </div>
         <div class="content">
-            <div id="download" class="section">
-                <h1>Download Our Extension</h1>
-                <p>Choose your browser to download the extension:</p>
-                <ul class="download-list">
-                    <li><a href="#chrome-download">Download for Chrome</a></li>
-                    <li><a href="#firefox-download">Download for Firefox</a></li>
-                    <li><a href="#edge-download">Download for Edge</a></li>
+            <div id="downloads" class="section">
+                <h2>Download Options</h2>
+                <p>Choose your browser:</p>
+                <ul>
+                    <li><a href="https://addons.mozilla.org/en-US/firefox/addon/your-extension" target="_blank">Download for Firefox</a></li>
+                    <li><a href="https://chrome.google.com/webstore/detail/your-extension" target="_blank">Download for Chrome</a></li>
                 </ul>
             </div>
-            <div id="about" class="section">
+            <div id="about" class="section active">
                 <h1>About Our Extension</h1>
                 <p>Welcome to our browser extension. This powerful tool is designed to enhance your browsing experience by [brief description of main features].</p>
                 <p>Our team of dedicated developers is committed to providing you with a seamless, efficient, and secure browsing enhancement.</p>
@@ -229,17 +238,19 @@
                 </ul>
             </div>
             <div id="feedback" class="section">
-                <h2>Report Feedback</h2>
-                <p>We value your input! Please use the form below to submit any bugs, suggestions, or comments:</p>
-                <form id="feedbackForm">
-                    <label for="name">Name:</label><br>
-                    <input type="text" id="name" name="name" required><br>
-                    <label for="email">Email:</label><br>
-                    <input type="email" id="email" name="email" required><br>
-                    <label for="message">Feedback:</label><br>
-                    <textarea id="message" name="message" rows="4" required></textarea><br>
-                    <button type="submit">Submit Feedback</button>
-                </form>
+                <div class="feedback-section">
+                    <h2>Report Feedback</h2>
+                    <p>We value your input! Please use the form below to submit any bugs, suggestions, or comments:</p>
+                    <form id="feedbackForm">
+                        <label for="name">Name:</label>
+                        <input type="text" id="name" name="name" required>
+                        <label for="email">Email:</label>
+                        <input type="email" id="email" name="email" required>
+                        <label for="message">Feedback:</label>
+                        <textarea id="message" name="message" rows="4" required></textarea>
+                        <button type="submit">Submit Feedback</button>
+                    </form>
+                </div>
             </div>
         </div>
     </div>
@@ -280,13 +291,19 @@
             });
         });
 
-        // Set initial active section to download
-        setActiveSection('download');
+        // Set initial active section to 'about'
+        setActiveSection('about');
 
-        // Handle form submission (you'll need to implement the actual submission logic)
+        // Handle feedback form submission
         document.getElementById('feedbackForm').addEventListener('submit', (e) => {
             e.preventDefault();
             alert('Feedback submitted! (This is a placeholder - implement actual submission logic)');
+        });
+
+        // Handle sidebar download button click
+        document.querySelector('.sidebar .download-btn').addEventListener('click', (e) => {
+            e.preventDefault();
+            setActiveSection('downloads');
         });
     </script>
 </body>
