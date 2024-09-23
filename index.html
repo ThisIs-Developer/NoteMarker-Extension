@@ -5,46 +5,67 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Browser Extension</title>
     <style>
+        :root {
+            --primary-color: #3498db;
+            --hover-color: #2980b9;
+            --bg-color: #f4f4f4;
+            --text-color: #333;
+            --sidebar-width: 250px;
+        }
         body, html {
             margin: 0;
             padding: 0;
-            font-family: Arial, sans-serif;
+            font-family: 'Arial', sans-serif;
             height: 100%;
+            background-color: var(--bg-color);
+            color: var(--text-color);
         }
         .container {
             display: flex;
             height: 100%;
         }
         .sidebar {
-            width: 250px;
-            background-color: #f8f9fa;
-            padding: 20px;
-            box-shadow: 2px 0 5px rgba(0,0,0,0.1);
+            width: var(--sidebar-width);
+            background-color: #fff;
+            box-shadow: 2px 0 10px rgba(0,0,0,0.1);
+            padding: 20px 0;
+            overflow-y: auto;
         }
         .content {
             flex-grow: 1;
-            padding: 20px;
+            padding: 40px;
             overflow-y: auto;
+            transition: all 0.3s ease;
         }
         .sidebar a {
             display: block;
-            padding: 10px;
-            color: #333;
+            padding: 15px 25px;
+            color: var(--text-color);
             text-decoration: none;
-            transition: background-color 0.3s;
-            cursor: pointer;
+            transition: all 0.3s ease;
+            border-left: 5px solid transparent;
         }
         .sidebar a:hover {
-            background-color: #e9ecef;
+            background-color: var(--bg-color);
+        }
+        .sidebar a.active {
+            background-color: var(--bg-color);
+            color: var(--primary-color);
+            font-weight: bold;
+            border-left-color: var(--primary-color);
         }
         .download-btn {
             display: inline-block;
-            background-color: #007bff;
+            background-color: var(--primary-color);
             color: white !important;
-            padding: 10px 20px;
-            text-decoration: none;
+            padding: 12px 25px;
+            margin: 20px 25px;
             border-radius: 5px;
-            margin-bottom: 20px;
+            text-align: center;
+            transition: background-color 0.3s ease;
+        }
+        .download-btn:hover {
+            background-color: var(--hover-color);
         }
         .mobile-menu-toggle {
             display: none;
@@ -52,12 +73,23 @@
             border: none;
             font-size: 24px;
             cursor: pointer;
+            padding: 10px;
         }
         .section {
             display: none;
+            opacity: 0;
+            transition: opacity 0.3s ease;
         }
         .section.active {
             display: block;
+            opacity: 1;
+        }
+        h1, h2 {
+            margin-top: 0;
+            color: var(--primary-color);
+        }
+        p {
+            line-height: 1.6;
         }
         @media (max-width: 768px) {
             .container {
@@ -70,9 +102,11 @@
             .sidebar.active {
                 display: block;
             }
+            .content {
+                padding: 20px;
+            }
             .mobile-menu-toggle {
                 display: block;
-                margin: 10px;
             }
         }
     </style>
@@ -81,70 +115,122 @@
     <div class="container">
         <button class="mobile-menu-toggle">☰</button>
         <div class="sidebar">
-            <a href="#" class="download-btn">Download Extension</a>
-            <a data-section="privacy">Privacy Policy</a>
-            <a data-section="license">License</a>
-            <a data-section="release-notes">Release Notes</a>
-            <a data-section="changelog">Changelog</a>
-            <a data-section="feedback">Report Feedback</a>
-            <a data-section="about">About</a>
+            <a href="#" class="download-btn">Download</a>
+            <a href="#about" data-section="about">About</a>
+            <a href="#privacy" data-section="privacy">Privacy Policy</a>
+            <a href="#license" data-section="license">License Page</a>
+            <a href="#release-notes" data-section="release-notes">Release Notes</a>
+            <a href="#changelog" data-section="changelog">Changelog</a>
+            <a href="#feedback" data-section="feedback">Report Feedback</a>
             <a href="https://github.com/your-repo" target="_blank">Open Source (GitHub)</a>
-            <a href="update.json" target="_blank">Update.json</a>
+            <a href="update.json" target="_blank">update.json</a>
         </div>
         <div class="content">
-            <div id="home" class="section active">
-                <h1>Welcome to Our Browser Extension</h1>
-                <p>This is a clean and modern website for our browser extension. Navigate using the sidebar to learn more about our product.</p>
+            <div id="about" class="section active">
+                <h1>About Our Extension</h1>
+                <p>Welcome to our browser extension. This powerful tool is designed to enhance your browsing experience by [brief description of main features].</p>
+                <p>Our team of dedicated developers is committed to providing you with a seamless, efficient, and secure browsing enhancement.</p>
             </div>
             <div id="privacy" class="section">
                 <h2>Privacy Policy</h2>
-                <p>Your privacy is important to us. This section explains how we handle and protect your data.</p>
-                <!-- Add more privacy policy content here -->
+                <p>At [Extension Name], we take your privacy seriously. This policy outlines how we collect, use, and protect your data:</p>
+                <ul>
+                    <li>We only collect anonymous usage statistics to improve our service.</li>
+                    <li>Your personal data is never sold or shared with third parties.</li>
+                    <li>All data transmission is encrypted using industry-standard protocols.</li>
+                </ul>
             </div>
             <div id="license" class="section">
-                <h2>License</h2>
-                <p>Read about the terms of use and licensing for our extension.</p>
-                <!-- Add license information here -->
+                <h2>License Agreement</h2>
+                <p>By using [Extension Name], you agree to the following terms:</p>
+                <ol>
+                    <li>This extension is provided "as is" without warranty of any kind.</li>
+                    <li>You may not redistribute or sell this extension without explicit permission.</li>
+                    <li>We reserve the right to update these terms at any time.</li>
+                </ol>
             </div>
             <div id="release-notes" class="section">
                 <h2>Release Notes</h2>
-                <p>Stay up to date with our latest features and improvements.</p>
-                <!-- Add release notes here -->
+                <h3>Version 2.0 (Latest)</h3>
+                <ul>
+                    <li>Added new feature: [description]</li>
+                    <li>Improved performance by optimizing [process]</li>
+                    <li>Fixed bug: [description]</li>
+                </ul>
+                <h3>Version 1.5</h3>
+                <ul>
+                    <li>Introduced [feature] functionality</li>
+                    <li>Updated user interface for better usability</li>
+                </ul>
             </div>
             <div id="changelog" class="section">
                 <h2>Changelog</h2>
-                <p>A detailed list of all updates and changes made to our extension.</p>
-                <!-- Add changelog entries here -->
+                <ul>
+                    <li><strong>2.0.0</strong> (2023-09-15): Major update with new features and improvements</li>
+                    <li><strong>1.5.2</strong> (2023-08-01): Bug fixes and minor improvements</li>
+                    <li><strong>1.5.0</strong> (2023-07-15): New [feature] added</li>
+                    <li><strong>1.0.0</strong> (2023-06-01): Initial release</li>
+                </ul>
             </div>
             <div id="feedback" class="section">
                 <h2>Report Feedback</h2>
-                <p>We value your input. Let us know about any bugs, suggestions, or comments you have.</p>
-                <!-- Add a feedback form here -->
-            </div>
-            <div id="about" class="section">
-                <h2>About Us</h2>
-                <p>Learn more about our extension, its purpose, and the team behind it.</p>
-                <!-- Add information about your extension and team here -->
+                <p>We value your input! Please use the form below to submit any bugs, suggestions, or comments:</p>
+                <form id="feedbackForm">
+                    <label for="name">Name:</label><br>
+                    <input type="text" id="name" name="name" required><br>
+                    <label for="email">Email:</label><br>
+                    <input type="email" id="email" name="email" required><br>
+                    <label for="message">Feedback:</label><br>
+                    <textarea id="message" name="message" rows="4" required></textarea><br>
+                    <button type="submit">Submit Feedback</button>
+                </form>
             </div>
         </div>
     </div>
     <script>
-        document.querySelector('.mobile-menu-toggle').addEventListener('click', function() {
-            document.querySelector('.sidebar').classList.toggle('active');
+        const sidebar = document.querySelector('.sidebar');
+        const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
+        const sidebarLinks = document.querySelectorAll('.sidebar a[data-section]');
+        const sections = document.querySelectorAll('.section');
+
+        mobileMenuToggle.addEventListener('click', () => {
+            sidebar.classList.toggle('active');
         });
 
-        document.querySelectorAll('.sidebar a[data-section]').forEach(link => {
-            link.addEventListener('click', function(e) {
-                e.preventDefault();
-                const sectionId = this.getAttribute('data-section');
-                document.querySelectorAll('.section').forEach(section => {
-                    section.classList.remove('active');
-                });
-                document.getElementById(sectionId).classList.add('active');
-                if (window.innerWidth <= 768) {
-                    document.querySelector('.sidebar').classList.remove('active');
-                }
+        function setActiveSection(sectionId) {
+            sections.forEach(section => {
+                section.classList.remove('active');
             });
+            sidebarLinks.forEach(link => {
+                link.classList.remove('active');
+            });
+
+            const activeSection = document.getElementById(sectionId);
+            const activeLink = document.querySelector(`.sidebar a[data-section="${sectionId}"]`);
+
+            if (activeSection) activeSection.classList.add('active');
+            if (activeLink) activeLink.classList.add('active');
+
+            if (window.innerWidth <= 768) {
+                sidebar.classList.remove('active');
+            }
+        }
+
+        sidebarLinks.forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                const sectionId = link.getAttribute('data-section');
+                setActiveSection(sectionId);
+            });
+        });
+
+        // Set initial active section
+        setActiveSection('about');
+
+        // Handle form submission (you'll need to implement the actual submission logic)
+        document.getElementById('feedbackForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+            alert('Feedback submitted! (This is a placeholder - implement actual submission logic)');
         });
     </script>
 </body>
