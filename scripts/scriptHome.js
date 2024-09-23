@@ -43,3 +43,21 @@ document.getElementById('feedback-form').addEventListener('submit', function (ev
 
     window.open(githubUrl, '_blank');
 });
+
+document.querySelectorAll('.gallery-image').forEach(function (image) {
+    image.addEventListener('click', function () {
+        const overlay = document.getElementById('imageOverlay');
+        const overlayImage = document.getElementById('overlayImage');
+        overlayImage.src = this.src;
+        overlay.style.display = 'flex';
+    });
+});
+
+document.getElementById('closeOverlay').addEventListener('click', function () {
+    document.getElementById('imageOverlay').style.display = 'none'; 
+});
+
+document.getElementById('imageOverlay').addEventListener('click', function () {
+    this.style.display = 'none'; // Hide overlay
+});
+

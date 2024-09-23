@@ -4,16 +4,23 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>NoteMarker</title>
+    <link rel="icon" type="image/x-icon" href="/icons/icon.png">
     <link rel="stylesheet" href="styles/styleHome.css">
 </head>
 <body>
     <div class="container">
         <div class="top-bar">
-            <div class="logo">NoteMarker</div>
+            <div class="logo">
+                <img src="/icons/icon.png" alt="NoteMarker Logo" style="height: 25px">
+                NoteMarker
+            </div>
             <button class="mobile-menu-toggle">☰</button>
         </div>
         <div class="sidebar">
-            <div class="logo">NoteMarker</div>
+            <div class="logo">
+                <img src="/icons/icon.png" alt="NoteMarker Logo" style="height: 25px">
+                NoteMarker
+            </div>
             <a href="#about" data-section="about" class="active">About</a>
             <a href="#download" data-section="download">Download</a>
             <a href="#privacy" data-section="privacy">Privacy Policy</a>
@@ -21,15 +28,57 @@
             <a href="#release-notes" data-section="release-notes">Release Notes</a>
             <a href="#changelog" data-section="changelog">Changelog</a>
             <a href="#feedback" data-section="feedback">Report Feedback</a>
-            <a href="https://github.com/ThisIs-Developer" target="_blank">Open Source (GitHub)</a>
+            <a href="https://github.com/ThisIs-Developer" target="_blank">GitHub</a>
             <a href="update.json" target="_blank">update.json</a>
         </div>
         <div class="content">
             <div id="about" class="section active">
                 <h1>About Our Extension</h1>
-                <p>Welcome to our browser extension. This powerful tool is designed to enhance your browsing experience by [brief description of main features].</p>
+                <p>NoteMarker is a powerful and intuitive browser extension designed to revolutionize your web browsing experience. By seamlessly integrating highlighting and note-taking capabilities directly into your browser, NoteMarker empowers users to efficiently capture, organize, and retrieve information from any webpage.</p>
+                
+                <video controls width="100%">
+                    <source src="assets/video.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+                
+                <h2>Features</h2>
+                <p>NoteMarker offers a comprehensive set of features to enhance your web browsing and note-taking experience:</p>
+                <ul>
+                    <li><strong>Dynamic Text Highlighting:</strong>
+                        <ul>
+                            <li>Effortlessly highlight important information with a simple right-click.</li>
+                            <li>Choose from five vibrant colors: Yellow, Light Blue, Light Green, Pink, and Orange.</li>
+                            <li>Highlights persist across browsing sessions for uninterrupted workflow.</li>
+                        </ul>
+                    </li>
+                    <li><strong>Customizable Sticky Notes:</strong>
+                        <ul>
+                            <li>Create, edit, and position virtual sticky notes anywhere on the webpage.</li>
+                            <li>Rich text formatting options for enhanced note-taking.</li>
+                            <li>Resizable and minimizable notes for a clutter-free interface.</li>
+                        </ul>
+                    </li>
+                    <li><strong>Cross-Browser Compatibility:</strong>
+                        <ul>
+                            <li>Available for Firefox, Chrome, Edge, and other Chromium-based browsers.</li>
+                            <li>Consistent experience across different platforms.</li>
+                        </ul>
+                    </li>
+                </ul>
+                
                 <p>Our team of dedicated developers is committed to providing you with a seamless, efficient, and secure browsing enhancement.</p>
-            </div>
+            
+                <h2>Usage of our extension</h2>
+                <div class="image-gallery">
+                    <img src="assets/leetcode.png" alt="Feature Image 1" width="300" class="gallery-image">
+                    <img src="assets/youtude.png" alt="Feature Image 2" width="300" class="gallery-image">
+                    <img src="assets/research paper.png" alt="Feature Image 3" width="300" class="gallery-image">
+                </div>
+                <div class="image-overlay" id="imageOverlay">
+                    <span class="close" id="closeOverlay">&times;</span>
+                    <img class="overlay-image" id="overlayImage" src="" alt="Overlay Image">
+                </div>
+            </div>            
             <div id="download" class="section">
                 <h2>Download Options</h2>
                 <p>Choose your browser:</p>
