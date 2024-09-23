@@ -3,186 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Browser Extension</title>
-    <style>
-        :root {
-            --primary-color: #3498db;
-            --hover-color: #2980b9;
-            --bg-color: #f4f4f4;
-            --text-color: #333;
-            --sidebar-width: 250px;
-            --form-bg-color: #fff;
-            --form-border-color: #ddd;
-            --form-border-radius: 5px;
-        }
-        body, html {
-            margin: 0;
-            padding: 0;
-            font-family: 'Arial', sans-serif;
-            height: 100%;
-            background-color: var(--bg-color);
-            color: var(--text-color);
-        }
-        .container {
-            display: flex;
-            height: 100%;
-            position: relative;
-        }
-        .top-bar {
-            display: none;
-            background-color: #fff;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-            padding: 10px 20px;
-            align-items: center;
-            justify-content: space-between;
-        }
-        .sidebar {
-            width: var(--sidebar-width);
-            background-color: #fff;
-            box-shadow: 2px 0 10px rgba(0,0,0,0.1);
-            padding: 20px 0;
-            overflow-y: auto;
-        }
-        .content {
-            flex-grow: 1;
-            padding: 40px;
-            overflow-y: auto;
-            transition: all 0.3s ease;
-        }
-        .sidebar a {
-            display: block;
-            padding: 15px 25px;
-            color: var(--text-color);
-            text-decoration: none;
-            transition: all 0.3s ease;
-            border-left: 5px solid transparent;
-        }
-        .sidebar a:hover {
-            background-color: var(--bg-color);
-        }
-        .sidebar a.active {
-            background-color: var(--bg-color);
-            color: var(--primary-color);
-            font-weight: bold;
-            border-left-color: var(--primary-color);
-        }
-        .sidebar .logo {
-            display: block;
-            color: var(--primary-color);
-            font-weight: bold;
-            padding: 10px 20px;
-            border-radius: 5px;
-            margin: 10px 15px;
-            text-align: center;
-            font-size: 24px;
-            cursor: default;
-        }
-        .top-bar .logo {
-            display: block;
-            color: var(--primary-color);
-            font-weight: bold;
-            padding: 5px 20px;
-            border-radius: 5px;
-            margin: 5px 15px 5px 15px;
-            text-align: center;
-            font-size: 24px;
-            cursor: default;
-        }
-        .feedback-section {
-            background-color: var(--form-bg-color);
-            padding: 20px;
-            border: 1px solid var(--form-border-color);
-            border-radius: var(--form-border-radius);
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-        }
-        .feedback-section h2 {
-            color: var(--primary-color);
-            margin-bottom: 15px;
-        }
-        .feedback-section label {
-            display: block;
-            margin: 10px 0 5px;
-            font-weight: bold;
-        }
-        .feedback-section input[type="text"],
-        .feedback-section input[type="email"],
-        .feedback-section textarea {
-            width: 100%;
-            padding: 10px;
-            border: 1px solid var(--form-border-color);
-            border-radius: var(--form-border-radius);
-            margin-bottom: 15px;
-            font-size: 14px;
-        }
-        .feedback-section button {
-            background-color: var(--primary-color);
-            color: white;
-            padding: 10px 15px;
-            border: none;
-            border-radius: var(--form-border-radius);
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-        }
-        .feedback-section button:hover {
-            background-color: var(--hover-color);
-        }
-        .mobile-menu-toggle {
-            display: none;
-            background: none;
-            border: none;
-            font-size: 24px;
-            cursor: pointer;
-        }
-        .section {
-            display: none;
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-        .section.active {
-            display: block;
-            opacity: 1;
-        }
-        h1, h2 {
-            margin-top: 0;
-            color: var(--primary-color);
-        }
-        p {
-            line-height: 1.6;
-        }
-        @media (max-width: 768px) {
-            .container {
-                flex-direction: column;
-            }
-            .top-bar {
-                display: flex;
-            }
-            .sidebar {
-                width: 100%;
-                display: none;
-            }
-            .sidebar .logo {
-                display: none;
-            }
-            .sidebar.active {
-                display: block;
-            }
-            .content {
-                padding: 20px;
-            }
-            .mobile-menu-toggle {
-                display: block;
-            }
-        }
-    </style>
+    <title>NoteMarker</title>
+    <link rel="icon" type="image/x-icon" href="/icons/icon.png">
+    <link rel="stylesheet" href="styles/styleHome.css">
 </head>
 <body>
     <div class="container">
         <div class="top-bar">
-            <div class="logo">NoteMarker</div>
+            <div class="logo">
+                <img src="/icons/icon.png" alt="NoteMarker Logo" style="height: 25px">
+                NoteMarker
+            </div>
             <button class="mobile-menu-toggle">☰</button>
         </div>
         <div class="sidebar">
-            <div class="logo">NoteMarker</div>
+            <div class="logo">
+                <img src="/icons/icon.png" alt="NoteMarker Logo" style="height: 25px">
+                NoteMarker
+            </div>
             <a href="#about" data-section="about" class="active">About</a>
             <a href="#download" data-section="download">Download</a>
             <a href="#privacy" data-section="privacy">Privacy Policy</a>
@@ -190,15 +28,57 @@
             <a href="#release-notes" data-section="release-notes">Release Notes</a>
             <a href="#changelog" data-section="changelog">Changelog</a>
             <a href="#feedback" data-section="feedback">Report Feedback</a>
-            <a href="https://github.com/your-repo" target="_blank">Open Source (GitHub)</a>
+            <a href="https://github.com/ThisIs-Developer" target="_blank">GitHub</a>
             <a href="update.json" target="_blank">update.json</a>
         </div>
         <div class="content">
             <div id="about" class="section active">
                 <h1>About Our Extension</h1>
-                <p>Welcome to our browser extension. This powerful tool is designed to enhance your browsing experience by [brief description of main features].</p>
+                <p>NoteMarker is a powerful and intuitive browser extension designed to revolutionize your web browsing experience. By seamlessly integrating highlighting and note-taking capabilities directly into your browser, NoteMarker empowers users to efficiently capture, organize, and retrieve information from any webpage.</p>
+                
+                <video controls width="100%">
+                    <source src="assets/video.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+                
+                <h2>Features</h2>
+                <p>NoteMarker offers a comprehensive set of features to enhance your web browsing and note-taking experience:</p>
+                <ul>
+                    <li><strong>Dynamic Text Highlighting:</strong>
+                        <ul>
+                            <li>Effortlessly highlight important information with a simple right-click.</li>
+                            <li>Choose from five vibrant colors: Yellow, Light Blue, Light Green, Pink, and Orange.</li>
+                            <li>Highlights persist across browsing sessions for uninterrupted workflow.</li>
+                        </ul>
+                    </li>
+                    <li><strong>Customizable Sticky Notes:</strong>
+                        <ul>
+                            <li>Create, edit, and position virtual sticky notes anywhere on the webpage.</li>
+                            <li>Rich text formatting options for enhanced note-taking.</li>
+                            <li>Resizable and minimizable notes for a clutter-free interface.</li>
+                        </ul>
+                    </li>
+                    <li><strong>Cross-Browser Compatibility:</strong>
+                        <ul>
+                            <li>Available for Firefox, Chrome, Edge, and other Chromium-based browsers.</li>
+                            <li>Consistent experience across different platforms.</li>
+                        </ul>
+                    </li>
+                </ul>
+                
                 <p>Our team of dedicated developers is committed to providing you with a seamless, efficient, and secure browsing enhancement.</p>
-            </div>
+            
+                <h2>Usage of our extension</h2>
+                <div class="image-gallery">
+                    <img src="assets/leetcode.png" alt="Feature Image 1" width="300" class="gallery-image">
+                    <img src="assets/youtude.png" alt="Feature Image 2" width="300" class="gallery-image">
+                    <img src="assets/research paper.png" alt="Feature Image 3" width="300" class="gallery-image">
+                </div>
+                <div class="image-overlay" id="imageOverlay">
+                    <span class="close" id="closeOverlay">&times;</span>
+                    <img class="overlay-image" id="overlayImage" src="" alt="Overlay Image">
+                </div>
+            </div>            
             <div id="download" class="section">
                 <h2>Download Options</h2>
                 <p>Choose your browser:</p>
@@ -267,39 +147,6 @@
         </div>
     </div>
 
-    <script>
-        document.querySelectorAll('.sidebar a').forEach(function (link) {
-            link.addEventListener('click', function (event) {
-                event.preventDefault();
-                document.querySelectorAll('.sidebar a').forEach(function (link) {
-                    link.classList.remove('active');
-                });
-                this.classList.add('active');
-
-                const sectionId = this.getAttribute('data-section');
-                document.querySelectorAll('.section').forEach(function (section) {
-                    section.classList.remove('active');
-                });
-                document.getElementById(sectionId).classList.add('active');
-            });
-        });
-
-        document.querySelector('.mobile-menu-toggle').addEventListener('click', function () {
-            document.querySelector('.sidebar').classList.toggle('active');
-        });
-
-        // Handle feedback form submission
-        document.getElementById('feedback-form').addEventListener('submit', function (event) {
-            event.preventDefault();
-
-            const name = document.getElementById('name').value;
-            const email = document.getElementById('email').value;
-            const feedback = document.getElementById('feedback').value;
-
-            const githubUrl = 'https://github.com/ThisIs-Developer/NoteMarker-Extension/issues'; // Your GitHub issues link
-
-            window.open(githubUrl, '_blank');
-        });
-    </script>
+    <script src="scripts/scriptHome.js"></script>
 </body>
 </html>
