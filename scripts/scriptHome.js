@@ -1,5 +1,9 @@
 document.querySelectorAll('.sidebar a').forEach(function (link) {
     link.addEventListener('click', function (event) {
+        if (this.getAttribute('href').startsWith('http')) {
+            return; 
+        }
+        
         event.preventDefault();
         document.querySelectorAll('.sidebar a').forEach(function (link) {
             link.classList.remove('active');
