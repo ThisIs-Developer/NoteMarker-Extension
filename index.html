@@ -201,20 +201,216 @@
                 <p>If you have any questions about this Browser Extension License, please contact us at <a href="mailto:baivab.sarkar@example.com">baivab.sarkar@example.com</a>.</p>
             </div>
             
-            <div id="release-notes" class="section">
+            <div id="release-notes" class="section release-notes">
                 <h2>Release Notes</h2>
-                <h3>Version 2.0 (Latest)</h3>
-                <ul>
-                    <li>Added new feature: [description]</li>
-                    <li>Improved performance by optimizing [process]</li>
-                    <li>Fixed bug: [description]</li>
-                </ul>
-                <h3>Version 1.5</h3>
-                <ul>
-                    <li>Introduced [feature] functionality</li>
-                    <li>Updated user interface for better usability</li>
-                </ul>
+            
+                <details>
+                    <summary>Version v2.0.6-Firefox</summary>
+                    <ul>
+                        <li>This update addresses a critical issue with the "Clear All" button, ensuring a smoother experience when managing highlights.</li>
+                        <li><strong>Fixes:</strong>
+                            <ul>
+                                <li><strong>Clear All Button Issue:</strong>
+                                    <ul>
+                                        <li><strong>Before:</strong> Clicking "Clear All" would remove both the highlighted text and the highlight itself from the webpage.</li>
+                                        <li><strong>After Fix:</strong> Now, only the highlight is removed, leaving the text intact.</li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <div class="download-links">
+                        <a href="https://github.com/ThisIs-Developer/NoteMarker-Extension/archive/refs/tags/v2.0.6-firefox.zip" class="button">Download ZIP</a>
+                        <a href="https://github.com/ThisIs-Developer/NoteMarker-Extension/archive/refs/tags/v2.0.6-firefox.tar.gz" class="button">Download TAR.GZ</a>
+                    </div>
+                </details>
+            
+                <details>
+                    <summary>Version v2.0.5-Firefox</summary>
+                    <ul>
+                        <li>We’re excited to present the v2.0.5 update for our browser extension! This version focuses on resolving warnings and issues related to the libs/polyfill.min.js file.</li>
+                        <li><strong>Fixes and Updates:</strong>
+                            <ul>
+                                <li><strong>Removal of libs/polyfill.min.js:</strong>
+                                    <ul>
+                                        <li><strong>Issue:</strong> The libs/polyfill.min.js file was causing warnings and conflicts, impacting the extension's performance and causing inconsistencies across different browsers.</li>
+                                        <li><strong>Resolution:</strong> We’ve removed libs/polyfill.min.js to eliminate these conflicts and improve overall extension stability. The polyfills included in this file were either redundant or incompatible with the current version of the extension, leading to unnecessary warnings and errors.</li>
+                                    </ul>
+                                </li>
+                                <li><strong>Updated Compatibility:</strong>
+                                    <ul>
+                                        <li>The removal of the polyfill file ensures that the extension is more streamlined and adheres to modern web standards, reducing the potential for conflicts and improving compatibility with the latest browser updates.</li>
+                                    </ul>
+                                </li>
+                                <li><strong>Enhanced Performance:</strong>
+                                    <ul>
+                                        <li>By removing the problematic polyfill, the extension’s performance has been improved, leading to a smoother and more reliable user experience.</li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <div class="download-links">
+                        <a href="https://github.com/ThisIs-Developer/NoteMarker-Extension/archive/refs/tags/v2.0.5-firefox.zip" class="button">Download ZIP</a>
+                        <a href="https://github.com/ThisIs-Developer/NoteMarker-Extension/archive/refs/tags/v2.0.5-firefox.tar.gz" class="button">Download TAR.GZ</a>
+                    </div>
+                </details>
+            
+                <details>
+                    <summary>Version v2.0.4-Firefox</summary>
+                    <ul>
+                        <li>We’re pleased to announce the v2.0.4 update for Firefox, which addresses issues from the previous version and introduces improvements for enhanced performance and compatibility.</li>
+                        <li><strong>Fixes and Improvements:</strong>
+                            <ul>
+                                <li><strong>Manifest-Version Upgrade:</strong> Migrated to Manifest V3 to enhance security and performance.</li>
+                                <li><strong>Content Security Policy (CSP) Update:</strong> Revised CSP for extension_pages to script-src 'self'; object-src 'self';, improving security.</li>
+                                <li><strong>Background Script and Scripting API Adjustments:</strong> Optimized background script and scripting APIs to ensure smooth communication between popup and content scripts.</li>
+                                <li><strong>Browser Compatibility:</strong> Added browser_specific_settings for Gecko with a strict minimum version of 109.0, ensuring compatibility with recent Firefox versions.</li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <div class="download-links">
+                        <a href="https://github.com/ThisIs-Developer/NoteMarker-Extension/archive/refs/tags/v2.0.4-firefox.zip" class="button">Download ZIP</a>
+                        <a href="https://github.com/ThisIs-Developer/NoteMarker-Extension/archive/refs/tags/v2.0.4-firefox.tar.gz" class="button">Download TAR.GZ</a>
+                    </div>
+                </details>
+
+                <details>
+                    <summary>Version v2.0.3</summary>
+                    <ul>
+                        <li>Full Changelog: v2.0.2...v2.0.3</li>
+                        <li>This update introduces enhancements and bug fixes to improve the overall user experience of the extension.</li>
+                        <li><strong>New Features:</strong>
+                            <ul>
+                                <li><strong>Improved Performance:</strong> Optimized code for faster loading times and better resource management.</li>
+                                <li><strong>User Interface Tweaks:</strong> Minor adjustments to improve usability and aesthetics.</li>
+                            </ul>
+                        </li>
+                        <li><strong>Fixes:</strong>
+                            <ul>
+                                <li><strong>Various Bug Fixes:</strong> Addressed several minor bugs reported by users.</li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <div class="download-links">
+                        <a href="https://github.com/ThisIs-Developer/NoteMarker-Extension/archive/refs/tags/v2.0.3.zip" class="button">Download ZIP</a>
+                        <a href="https://github.com/ThisIs-Developer/NoteMarker-Extension/archive/refs/tags/v2.0.3.tar.gz" class="button">Download TAR.GZ</a>
+                    </div>
+                </details>
+        
+                <details>
+                    <summary>Version v2.0.3-Firefox</summary>
+                    <ul>
+                        <li>We’re excited to announce the v2.0.3 update of our browser extension, now with enhanced compatibility for Firefox!</li>
+                        <li><strong>New Features:</strong>
+                            <ul>
+                                <li><strong>Firefox Compatibility:</strong> This version is optimized and fully compatible with Firefox add-ons.</li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <div class="download-links">
+                        <a href="https://github.com/ThisIs-Developer/NoteMarker-Extension/archive/refs/tags/v2.0.3-firefox.zip" class="button">Download ZIP</a>
+                        <a href="https://github.com/ThisIs-Developer/NoteMarker-Extension/archive/refs/tags/v2.0.3-firefox.tar.gz" class="button">Download TAR.GZ</a>
+                    </div>
+                </details>
+            
+                <details>
+                    <summary>Version v2.0.2</summary>
+                    <ul>
+                        <li>Version v2.0.2 introduces several updates and fixes to improve the functionality and user experience of the browser extension.</li>
+                        <li><strong>New Features:</strong>
+                            <ul>
+                                <li><strong>Date Display Reintroduced:</strong> The date has been restored to the sticky notes.</li>
+                                <li><strong>Enhanced Cancel Note Animation:</strong> The cancel button now includes a smoother animation.</li>
+                            </ul>
+                        </li>
+                        <li><strong>Fixes:</strong>
+                            <ul>
+                                <li><strong>Scrollbar Size Adjusted:</strong> The scrollbar size has been corrected for better usability.</li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <div class="download-links">
+                        <a href="https://github.com/ThisIs-Developer/NoteMarker-Extension/archive/refs/tags/v2.0.2.zip" class="button">Download ZIP</a>
+                        <a href="https://github.com/ThisIs-Developer/NoteMarker-Extension/archive/refs/tags/v2.0.2.tar.gz" class="button">Download TAR.GZ</a>
+                    </div>
+                </details>
+            
+                <details>
+                    <summary>Version v2.0.1</summary>
+                    <ul>
+                        <li>I'm excited to introduce the v2.0.1 release of the browser extension! This update brings new features and a refined user interface.</li>
+                        <li><strong>New Features:</strong>
+                            <ul>
+                                <li><strong>Copy Button:</strong> Easily copy the contents of your sticky notes with the new copy button.</li>
+                                <li><strong>Cancel Button:</strong> Remove any sticky note with the new cancel button.</li>
+                            </ul>
+                        </li>
+                        <li><strong>User Interface Enhancements:</strong>
+                            <ul>
+                                <li><strong>Minimalistic UI:</strong> Experience a cleaner and more streamlined interface.</li>
+                                <li><strong>Time-Only Display:</strong> The sticky notes now display only the time.</li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <div class="download-links">
+                        <a href="https://github.com/ThisIs-Developer/NoteMarker-Extension/archive/refs/tags/v2.0.1.zip" class="button">Download ZIP</a>
+                        <a href="https://github.com/ThisIs-Developer/NoteMarker-Extension/archive/refs/tags/v2.0.1.tar.gz" class="button">Download TAR.GZ</a>
+                    </div>
+                </details>
+            
+                <details>
+                    <summary>Version v1.0.2-beta</summary>
+                    <ul>
+                        <li>I'm pleased to announce the v1.0.2-beta update for the browser extension! This release focuses on addressing specific issues.</li>
+                        <li><strong>Fixes:</strong>
+                            <ul>
+                                <li><strong>Icon Issue with Sticky Note Color Palette:</strong> Resolved the problem with the color palette icon.</li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <div class="download-links">
+                        <a href="https://github.com/ThisIs-Developer/NoteMarker-Extension/archive/refs/tags/v1.0.2-beta.zip" class="button">Download ZIP</a>
+                        <a href="https://github.com/ThisIs-Developer/NoteMarker-Extension/archive/refs/tags/v1.0.2-beta.tar.gz" class="button">Download TAR.GZ</a>
+                    </div>
+                </details>
+            
+                <details>
+                    <summary>Version v1.0.1-beta</summary>
+                    <ul>
+                        <li>Welcome to the v1.0.1-beta release of our browser extension! Enhanced user experience with vibrant new features.</li>
+                        <li><strong>Key Features:</strong>
+                            <ul>
+                                <li><strong>Highlight Any Page with a Right-Click:</strong> Easily highlight any text using the right-click context menu.</li>
+                                <li><strong>Sticky Notes Anywhere:</strong> Place sticky notes anywhere on any page and move them freely.</li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <div class="download-links">
+                        <a href="https://github.com/ThisIs-Developer/NoteMarker-Extension/archive/refs/tags/v1.0.1-beta.zip" class="button">Download ZIP</a>
+                        <a href="https://github.com/ThisIs-Developer/NoteMarker-Extension/archive/refs/tags/v1.0.1-beta.tar.gz" class="button">Download TAR.GZ</a>
+                    </div>
+                </details>
+            
+                <details>
+                    <summary>Version v0.1.0-beta</summary>
+                    <ul>
+                        <li>I'm excited to introduce our browser extension's v0.1.0-beta release! Packed with essential features to help you annotate and take notes seamlessly.</li>
+                        <li><strong>Key Features:</strong>
+                            <ul>
+                                <li><strong>Highlight Any Page:</strong> Highlight important text on any webpage with one click.</li>
+                                <li><strong>Sticky Notes:</strong> Take notes anywhere on the page with one click.</li>
+                                <li><strong>Clear All Notes & Highlights:</strong> Instantly clear all sticky notes and highlights with a single button press.</li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <div class="download-links">
+                        <a href="https://github.com/ThisIs-Developer/NoteMarker-Extension/archive/refs/tags/v0.1.0-beta.zip" class="button">Download ZIP</a>
+                        <a href="https://github.com/ThisIs-Developer/NoteMarker-Extension/archive/refs/tags/v0.1.0-beta.tar.gz" class="button">Download TAR.GZ</a>
+                    </div>
+                </details>
             </div>
+            
             <div id="changelog" class="section">
                 <h2>Changelog</h2>
                 <ul>
