@@ -1,10 +1,17 @@
 document.querySelectorAll('.sidebar a').forEach(function (link) {
     link.addEventListener('click', function (event) {
+        // Allow default action for JSON link
+        if (this.getAttribute('href') === 'update.json') {
+            return; // Let the browser handle the link
+        }
+
         if (this.getAttribute('href').startsWith('http')) {
             return; 
         }
         
-        event.preventDefault();
+        event.preventDefault(); // Prevent default for internal links
+
+        // Manage active link state
         document.querySelectorAll('.sidebar a').forEach(function (link) {
             link.classList.remove('active');
         });

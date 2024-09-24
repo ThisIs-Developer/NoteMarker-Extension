@@ -1,0 +1,155 @@
+{
+    "versions": [
+        {
+            "version": "2.0.6-Firefox",
+            "release_date": "2024-09-24",
+            "description": "This update addresses a critical issue with the 'Clear All' button, ensuring a smoother experience when managing highlights.",
+            "fixes": [
+                {
+                    "issue": "Clear All Button Issue",
+                    "before": "Clicking 'Clear All' would remove both the highlighted text and the highlight itself from the webpage.",
+                    "after": "Now, only the highlight is removed, leaving the text intact."
+                }
+            ],
+            "details_url": "https://github.com/ThisIs-Developer/NoteMarker-Extension/releases/tag/v2.0.6-firefox"
+        },
+        {
+            "version": "2.0.5-Firefox",
+            "release_date": "2024-09-24",
+            "description": "This version focuses on resolving warnings and issues related to the libs/polyfill.min.js file.",
+            "fixes": [
+                {
+                    "issue": "Removal of libs/polyfill.min.js",
+                    "description": "The libs/polyfill.min.js file was causing warnings and conflicts, impacting the extension's performance."
+                },
+                {
+                    "issue": "Updated Compatibility",
+                    "description": "The removal of the polyfill file ensures that the extension is more streamlined and adheres to modern web standards."
+                },
+                {
+                    "issue": "Enhanced Performance",
+                    "description": "By removing the problematic polyfill, the extension’s performance has been improved."
+                }
+            ],
+            "details_url": "https://github.com/ThisIs-Developer/NoteMarker-Extension/releases/tag/v2.0.5-firefox"
+        },
+        {
+            "version": "2.0.4-Firefox",
+            "release_date": "2024-09-24",
+            "description": "This version addresses issues from the previous version and introduces improvements for enhanced performance and compatibility.",
+            "fixes": [
+                {
+                    "issue": "Manifest-Version Upgrade",
+                    "description": "Migrated to Manifest V3 to enhance security and performance."
+                },
+                {
+                    "issue": "Content Security Policy Update",
+                    "description": "Revised CSP for extension_pages to improve security."
+                },
+                {
+                    "issue": "Background Script Adjustments",
+                    "description": "Optimized background script and scripting APIs for better communication."
+                },
+                {
+                    "issue": "Browser Compatibility",
+                    "description": "Added browser_specific_settings for Gecko with a strict minimum version of 109.0."
+                }
+            ],
+            "details_url": "https://github.com/ThisIs-Developer/NoteMarker-Extension/releases/tag/v2.0.4-firefox"
+        },
+        {
+            "version": "2.0.3",
+            "release_date": "2024-09-24",
+            "description": "Introduces enhancements and bug fixes to improve the overall user experience of the extension.",
+            "fixes": [
+                {
+                    "issue": "Various Bug Fixes",
+                    "description": "Addressed several minor bugs reported by users."
+                }
+            ],
+            "details_url": "https://github.com/ThisIs-Developer/NoteMarker-Extension/releases/tag/v2.0.3"
+        },
+        {
+            "version": "2.0.3-Firefox",
+            "release_date": "2024-09-17",
+            "description": "This version is optimized and fully compatible with Firefox add-ons.",
+            "details_url": "https://github.com/ThisIs-Developer/NoteMarker-Extension/releases/tag/v2.0.3-firefox"
+        },
+        {
+            "version": "2.0.2",
+            "release_date": "2024-09-17",
+            "description": "Introduces several updates and fixes to improve functionality.",
+            "fixes": [
+                {
+                    "issue": "Date Display Reintroduced",
+                    "description": "The date has been restored to the sticky notes."
+                },
+                {
+                    "issue": "Scrollbar Size Adjusted",
+                    "description": "The scrollbar size has been corrected for better usability."
+                }
+            ],
+            "details_url": "https://github.com/ThisIs-Developer/NoteMarker-Extension/releases/tag/v2.0.2"
+        },
+        {
+            "version": "2.0.1",
+            "release_date": "2024-09-17",
+            "description": "Brings new features and a refined user interface.",
+            "fixes": [
+                {
+                    "issue": "New Features",
+                    "description": "Easily copy and cancel sticky notes with new buttons."
+                }
+            ],
+            "details_url": "https://github.com/ThisIs-Developer/NoteMarker-Extension/releases/tag/v2.0.1"
+        },
+        {
+            "version": "1.0.2-beta",
+            "release_date": "2024-09-17",
+            "description": "This release focuses on addressing specific issues.",
+            "fixes": [
+                {
+                    "issue": "Icon Issue",
+                    "description": "Resolved the problem with the color palette icon."
+                }
+            ],
+            "details_url": "https://github.com/ThisIs-Developer/NoteMarker-Extension/releases/tag/v1.0.2-beta"
+        },
+        {
+            "version": "1.0.1-beta",
+            "release_date": "2024-09-17",
+            "description": "Enhanced user experience with vibrant new features.",
+            "features": [
+                {
+                    "feature": "Highlight Any Page",
+                    "description": "Easily highlight any text using the right-click context menu."
+                },
+                {
+                    "feature": "Sticky Notes Anywhere",
+                    "description": "Place sticky notes anywhere on any page."
+                }
+            ],
+            "details_url": "https://github.com/ThisIs-Developer/NoteMarker-Extension/releases/tag/v1.0.1-beta"
+        },
+        {
+            "version": "0.1.0-beta",
+            "release_date": "2024-09-17",
+            "description": "Packed with essential features to help you annotate and take notes seamlessly.",
+            "features": [
+                {
+                    "feature": "Highlight Any Page",
+                    "description": "Highlight important text on any webpage."
+                },
+                {
+                    "feature": "Sticky Notes",
+                    "description": "Take notes anywhere on the page."
+                },
+                {
+                    "feature": "Clear All Notes",
+                    "description": "Instantly clear all sticky notes and highlights."
+                }
+            ],
+            "details_url": "https://github.com/ThisIs-Developer/NoteMarker-Extension/releases/tag/v0.1.0-beta"
+        }
+    ]
+}
