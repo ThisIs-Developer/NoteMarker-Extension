@@ -263,6 +263,49 @@ li ul {
     height: auto;
 }
 
+.download-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.image-column {
+    flex-basis: 20%;
+    text-align: center;
+}
+
+.text-column {
+    flex-basis: 80%;
+    padding-left: 20px;
+}
+
+.browser-icons {
+    display: flex;
+    justify-content: space-around;
+}
+
+.browser-image {
+    width: 50px;
+    height: auto;
+    margin: 10px;
+}
+
+.download-button {
+    display: inline-block;
+    background-color: var(--primary-color);
+    color: white;
+    padding: 10px 15px;
+    text-decoration: none;
+    border-radius: var(--form-border-radius);
+    transition: background-color 0.3s ease;
+    margin-top: 10px;
+}
+
+.download-button:hover {
+    background-color: var(--hover-color);
+}
+
+
 .privacy-policy, .license {
     border-radius: 8px;
 }
@@ -345,43 +388,79 @@ li ul {
     .container {
         flex-direction: column;
     }
+
     .top-bar {
         display: flex;
     }
+
     .sidebar {
         width: 100%;
         display: none;
     }
+
     .sidebar .logo {
         display: none;
     }
+
     .sidebar.active {
         display: block;
     }
+
     .content {
         padding: 20px;
     }
+
     .mobile-menu-toggle {
         display: block;
     }
+
     .image-gallery {
         justify-content: center;
     }
+
     .image-gallery img {
         max-width: 90%;
         margin: 10px;
     }
+
     .release-notes {
         padding: 15px;
     }
+
     .release-notes h2 {
         font-size: 1.5em;
     }
+
     .release-notes summary {
         font-size: 1em;
     }
+
     .release-notes a.button {
         font-size: 0.9em;
         padding: 5px 10px;
+    }
+
+    .download-item {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .image-column {
+        flex-basis: auto;
+        margin-bottom: 10px;
+    }
+
+    .text-column {
+        flex-basis: auto;
+        padding-left: 0;
+    }
+
+    .browser-icons {
+        justify-content: center;
+        margin-top: 10px;
+    }
+
+    .browser-image {
+        width: 40px;
     }
 }
