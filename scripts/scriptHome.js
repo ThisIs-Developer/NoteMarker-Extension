@@ -1,17 +1,15 @@
 document.querySelectorAll('.sidebar a').forEach(function (link) {
     link.addEventListener('click', function (event) {
-        // Allow default action for JSON link
         if (this.getAttribute('href') === 'update.json') {
-            return; // Let the browser handle the link
+            return;
         }
 
         if (this.getAttribute('href').startsWith('http')) {
             return; 
         }
         
-        event.preventDefault(); // Prevent default for internal links
+        event.preventDefault();
 
-        // Manage active link state
         document.querySelectorAll('.sidebar a').forEach(function (link) {
             link.classList.remove('active');
         });
@@ -71,4 +69,3 @@ document.getElementById('closeOverlay').addEventListener('click', function () {
 document.getElementById('imageOverlay').addEventListener('click', function () {
     this.style.display = 'none'; 
 });
-
